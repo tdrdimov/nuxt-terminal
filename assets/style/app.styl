@@ -1,6 +1,7 @@
 // Import Vuetify styling
-@require '~vuetify/src/stylus/app.styl'
-.green {
+@require '~vuetify/src/stylus/app.styl';
+
+.green-text {
   color: green;
 }
 
@@ -12,12 +13,26 @@
   color: blue;
 }
 
+.cyan-text {
+  color: cyan;
+}
+
 .red-text {
-  color: red;
+  color: #f06449;
 }
 
 .white-text {
   color: white;
+}
+
+.lightblue-text {
+  color: lightblue;
+}
+
+.small {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 100;
 }
 
 .container {
@@ -51,9 +66,21 @@
     height: 22px;
     background: #3b3b3b;
     border-radius: 5px 5px 0 0;
+    color: #ccc;
+    font-size: 11pt;
+    line-height: 20px;
+
+    span {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      text-align: center;
+      margin: auto;
+    }
 
     .buttons {
-      line-height: 0px;
+      line-height: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -96,7 +123,7 @@
 #clock {
   text-align: right;
   position: absolute;
-  top: 22px;
+  top: 0;
   right: 0;
   z-index: 1;
   background: #00000063;
@@ -130,7 +157,6 @@
 
 .fallout {
   background: rgba(23, 28, 18, 0.94);
-
   /* All the single browsers */
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAE0lEQVQIHWP4//8/AxMDFMiDWQA2wAMhzy0v7QAAAABJRU5ErkJggg=="), -moz-radial-gradient(center, ellipse cover, rgba(23, 28, 18, 0.94) 0%, rgba(23, 28, 18, 0.94) 100%) no-repeat;
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAE0lEQVQIHWP4//8/AxMDFMiDWQA2wAMhzy0v7QAAAABJRU5ErkJggg=="), -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(23, 28, 18, 0.94)), color-stop(100%, rgba(23, 28, 18, 0.94)));
@@ -138,53 +164,53 @@
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAE0lEQVQIHWP4//8/AxMDFMiDWQA2wAMhzy0v7QAAAABJRU5ErkJggg=="), -o-radial-gradient(center, ellipse cover, rgba(23, 28, 18, 0.94) 0%, rgba(23, 28, 18, 0.94) 100%) no-repeat;
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAE0lEQVQIHWP4//8/AxMDFMiDWQA2wAMhzy0v7QAAAABJRU5ErkJggg=="), -ms-radial-gradient(center, ellipse cover, rgba(23, 28, 18, 0.94) 0%, rgba(23, 28, 18, 0.94) 100%) no-repeat;
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAE0lEQVQIHWP4//8/AxMDFMiDWQA2wAMhzy0v7QAAAABJRU5ErkJggg=="), radial-gradient(ellipse at center, rgba(23, 28, 18, 0.94) 0%, rgba(23, 28, 18, 0.94) 100%) no-repeat;
-}
 
-.fallout .content {
-  padding: 15px 15px 0 15px;
-}
+  .content {
+    padding: 15px 15px 0;
+  }
 
-.fallout .prompt {
-  padding: 0 15px 15px 15px;
-}
+  .prompt {
+    padding: 0 15px 15px;
+  }
 
-.fallout .content, .fallout .prompt,
-.fallout .prompt .input,
-.fallout .prompt .input::before {
-  color: transparent;
-  text-shadow: 0 0 0 #90d690;
+  .content,
+  .prompt,
+  .prompt .input,
+  .prompt .input::before {
+    color: transparent;
+    text-shadow: 0 0 0 #90d690;
+    /* Hack to hide the real caret */
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: VT323, monospace, "Lucida Console", Monaco;
+    letter-spacing: 1px;
+  }
 
-  /* Hack to hide the real caret */
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  font-family: VT323, monospace, "Lucida Console", Monaco;
-  letter-spacing: 1px;
-}
+  .prompt .input.show-caret {
+    color: #90d690;
+    opacity: 0.85;
+  }
 
-.fallout .prompt .input.show-caret {
-  color: #90d690;
-  opacity: .85;
-}
+  .prompt .input::after {
+    font-size: 32px;
+    position: relative;
+    top: 2px;
+  }
 
-.fallout .prompt .input::after {
-  font-size: 32px;
-  position: relative;
-  top: 2px;
-}
+  .loading::after {
+    content: "âš™";
+    color: #ddd;
+    font-size: 10em;
+    border-radius: 10em;
+    opacity: 0.4;
+  }
 
-.fallout .loading::after {
-  content: "âš™";
-  color: #ddd;
-  font-size: 10em;
-  border-radius: 10em;
-  opacity: 0.4;
-}
+  .content ul {
+    margin: 0;
+  }
 
-.fallout .content ul {
-  margin: 0;
-}
-
-.fallout .content ul li {
-  list-style-type: none;
+  .content ul li {
+    list-style-type: none;
+  }
 }

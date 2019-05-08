@@ -9,10 +9,11 @@
             <div class="minimize" />
             <div class="zoom" />
           </div>
+          <span>tdrdimov --bash</span>
         </div>
-        <Clock id="clock" />
         <div id="terminal" />
       </div>
+      <Clock id="clock" />
     </div>
   </div>
 </template>
@@ -35,15 +36,42 @@ To start enter the command <strong class="orange-text">help</strong>`,
 <strong class="orange-text">portfolio</strong>      Show my work
 <strong class="orange-text">skills</strong>         Show my skills
 <strong class="orange-text">social</strong>         Display my social network profiles
-<strong class="orange-text">contact</strong>        To send me a message`,
-      about: `<br /><span class="white-text">Hi there,</span>
-<span class="white-text">my name is Todor Dimov, a passionate front-end developer with over three years of experience in web & application development. I focus on developing a better user interface and interactions for better user experience.</span>`,
+<strong class="orange-text">contact</strong>        Send me a message`,
+      about: `<br /><span class="lightblue-text">I'm Todor Dimov, a 29-year-old <strong class="red-text">Front-end developer</strong> based in Houston, Tx. I'm a weird guy who likes making weird things with web technologies.
+I like to <strong class="red-text">resolve</strong> design problems, <strong class="red-text">create</strong> smart user interface and <strong class="red-text">imagine</strong> useful interaction, developing rich web experiences & <strong class="red-text">web applications</strong>.
+When not working or futzing around with code, I actually study more code. I'm currently not available for full time <strong class="red-text">projects</strong> but always on the look for side ones.</span>`,
       portfolio: `<br /><a href="#">Delta Hydraulics</a><br /><a href="#">Pelican Insurance</a>`,
       social: `<br />
-Github        <a target="_blank" href="https://github.com/tdrdimov">https://github.com/tdrdimov</a>
-LinkedIn      <a target="_blank" href="https://www.linkedin.com/in/todor-dimov-96900b115">https://www.linkedin.com/in/todor-dimov-96900b115</a>
-Instagram     <a target="_blank" href="https://www.instagram.com/tdrdimov/">https://www.instagram.com/tdrdimov/</a>
-type <strong class="orange-text">social github</strong> to open my github profile`
+<strong class="orange-text">github</strong>        <a target="_blank" href="https://github.com/tdrdimov">github.com</a>
+<strong class="orange-text">linkedin</strong>      <a target="_blank" href="https://www.linkedin.com/in/todor-dimov-96900b115">linkedin.com</a>
+<strong class="orange-text">codepen</strong>       <a target="_blank" href="https://codepen.io/tdrdimov/">codepen.io</a>
+<strong class="orange-text">upwork</strong>        <a href="https://www.upwork.com/o/profiles/users/_~012c5b3b4e6acc0bf6/">upwork.com</a>
+<strong class="orange-text">instagram</strong>     <a target="_blank" href="https://www.instagram.com/tdrdimov/">instagram.com</a>
+type <strong class="orange-text">github</strong> to open my github profile`,
+      skills: `<br />
+<h3 class="cyan-text">SKILLS</h3>
+<strong class="lightblue-text">Development:</strong>
+Front-end frameworks
+Browser-specific quirks
+Performance across devices
+Responsive web
+Client-side optimization
+
+<strong class="lightblue-text">Design:</strong>
+User interface
+User experience
+Web animation
+
+<h3 class="cyan-text">TOOLS</h3>
+<strong class="lightblue-text">Development:</strong>
+Javascript <span class="small">es6 / jQuery / React.js / Vue.js / Three.js / Nuxt.js</span>
+PHP <span class="small">Wordpress</span>
+HTML
+CSS <span class="small">SASS / SCSS</span>
+Version Control <span class="small">git</span>
+
+<strong class="lightblue-text">Design:</strong>
+Adobe Photoshop`
     }
   },
   mounted() {
@@ -53,7 +81,8 @@ type <strong class="orange-text">social github</strong> to open my github profil
     pity = $('#terminal').Ptty({
       theme: 'fallout',
       i18n: {
-        welcome: that.welcome
+        welcome: that.welcome,
+        error_not_found: that.error_not_found
       },
       native_cmds: false
     })
@@ -64,13 +93,23 @@ type <strong class="orange-text">social github</strong> to open my github profil
     this.command('about', that.about)
     this.command('portfolio', that.portfolio)
     this.command('social', that.social)
+    this.command('skills', that.skills)
     this.command('github', 'open in 1s', 'https://github.com/tdrdimov')
+    this.command('linkedin', 'open in 1s', 'https://www.linkedin.com/in/todor-dimov-96900b115')
+    this.command('instagram', 'open in 1s', 'https://www.instagram.com/tdrdimov/')
+    this.command('codepen', 'open in 1s', 'https://codepen.io/tdrdimov/')
+    this.command('upwork', 'open in 1s', 'https://www.upwork.com/o/profiles/users/_~012c5b3b4e6acc0bf6/')
     // Register callback for commands
     this.callback('help')
     this.callback('about')
     this.callback('portfolio')
     this.callback('social')
+    this.callback('skills')
     this.callback('github')
+    this.callback('linkedin')
+    this.callback('instagram')
+    this.callback('codepen')
+    this.callback('upwork')
 
     // MATRIX ANIMATION
     canvasApp()

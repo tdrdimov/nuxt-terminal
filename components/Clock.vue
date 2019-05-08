@@ -15,22 +15,21 @@ export default {
     }
   },
   mounted() {
-    /* eslint-disable */
-    var timerID = setInterval(this.updateTime, 1000);
+    setInterval(this.updateTime, 1000)
     this.updateTime()
   },
   methods: {
     zeroPadding(num, digit) {
       let zero = ''
-      for(var i = 0; i < digit; i++) {
+      for (let i = 0; i < digit; i++) {
         zero += '0'
       }
       return (zero + num).slice(-digit)
     },
     updateTime() {
-      var cd = new Date()
+      const cd = new Date()
       this.time = this.zeroPadding(cd.getHours(), 2) + ':' + this.zeroPadding(cd.getMinutes(), 2) + ':' + this.zeroPadding(cd.getSeconds(), 2)
-      this.date = this.zeroPadding(cd.getFullYear(), 4) + '-' + this.zeroPadding(cd.getMonth()+1, 2) + '-' + this.zeroPadding(cd.getDate(), 2) + ' ' + this.week[cd.getDay()]
+      this.date = this.zeroPadding(cd.getFullYear(), 4) + '-' + this.zeroPadding(cd.getMonth() + 1, 2) + '-' + this.zeroPadding(cd.getDate(), 2) + ' ' + this.week[cd.getDay()]
     }
   }
 }

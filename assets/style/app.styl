@@ -1,0 +1,190 @@
+// Import Vuetify styling
+@require '~vuetify/src/stylus/app.styl'
+.green {
+  color: green;
+}
+
+.orange-text {
+  color: orange;
+}
+
+.blue-text {
+  color: blue;
+}
+
+.red-text {
+  color: red;
+}
+
+.white-text {
+  color: white;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#myCanvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+.terminalFrame {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 800px;
+  max-height: 500px !important;
+  min-height: 500px;
+  margin: auto;
+
+  .frame {
+    width: 100%;
+    height: 22px;
+    background: #3b3b3b;
+    border-radius: 5px 5px 0 0;
+
+    .buttons {
+      line-height: 0px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 47px;
+      min-height: 21px;
+      margin-left: 8px;
+    }
+
+    .close {
+      background: #ff5c5c;
+      font-size: 9pt;
+      width: 11px;
+      height: 11px;
+      border: 1px solid #e33e41;
+      border-radius: 50%;
+    }
+
+    .minimize {
+      background: #ffbd4c;
+      font-size: 9pt;
+      line-height: 11px;
+      width: 11px;
+      height: 11px;
+      border: 1px solid #e09e3e;
+      border-radius: 50%;
+    }
+
+    .zoom {
+      background: #00ca56;
+      font-size: 9pt;
+      line-height: 11px;
+      width: 11px;
+      height: 11px;
+      border: 1px solid #14ae46;
+      border-radius: 50%;
+    }
+  }
+}
+
+#clock {
+  text-align: right;
+  position: absolute;
+  top: 22px;
+  right: 0;
+  z-index: 1;
+  background: #00000063;
+  padding: 20px;
+
+  p {
+    margin: 0;
+  }
+}
+
+#terminal {
+  border-radius: 0 0 5px 5px;
+  webkit-box-shadow: 1px 1px 15px 3px rgba(23, 28, 18, 0.94);
+  -moz-box-shadow: 1px 1px 15px 3px rgba(23, 28, 18, 0.94);
+  box-shadow: 1px 1px 15px 3px rgba(23, 28, 18, 0.94);
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  border-bottom: 1px solid #3c3c3c;
+  border-left: 1px solid #3c3c3c;
+  border-right: 1px solid #3c3c3c;
+
+  a {
+    &:hover {
+      background: #1976d2;
+      color: #fff;
+    }
+  }
+}
+
+.fallout {
+  background: rgba(23, 28, 18, 0.94);
+
+  /* All the single browsers */
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAE0lEQVQIHWP4//8/AxMDFMiDWQA2wAMhzy0v7QAAAABJRU5ErkJggg=="), -moz-radial-gradient(center, ellipse cover, rgba(23, 28, 18, 0.94) 0%, rgba(23, 28, 18, 0.94) 100%) no-repeat;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAE0lEQVQIHWP4//8/AxMDFMiDWQA2wAMhzy0v7QAAAABJRU5ErkJggg=="), -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(23, 28, 18, 0.94)), color-stop(100%, rgba(23, 28, 18, 0.94)));
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAE0lEQVQIHWP4//8/AxMDFMiDWQA2wAMhzy0v7QAAAABJRU5ErkJggg=="), -webkit-radial-gradient(center, ellipse cover, rgba(23, 28, 18, 0.94) 0%, rgba(23, 28, 18, 0.94) 100%) no-repeat;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAE0lEQVQIHWP4//8/AxMDFMiDWQA2wAMhzy0v7QAAAABJRU5ErkJggg=="), -o-radial-gradient(center, ellipse cover, rgba(23, 28, 18, 0.94) 0%, rgba(23, 28, 18, 0.94) 100%) no-repeat;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAE0lEQVQIHWP4//8/AxMDFMiDWQA2wAMhzy0v7QAAAABJRU5ErkJggg=="), -ms-radial-gradient(center, ellipse cover, rgba(23, 28, 18, 0.94) 0%, rgba(23, 28, 18, 0.94) 100%) no-repeat;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAE0lEQVQIHWP4//8/AxMDFMiDWQA2wAMhzy0v7QAAAABJRU5ErkJggg=="), radial-gradient(ellipse at center, rgba(23, 28, 18, 0.94) 0%, rgba(23, 28, 18, 0.94) 100%) no-repeat;
+}
+
+.fallout .content {
+  padding: 15px 15px 0 15px;
+}
+
+.fallout .prompt {
+  padding: 0 15px 15px 15px;
+}
+
+.fallout .content, .fallout .prompt,
+.fallout .prompt .input,
+.fallout .prompt .input::before {
+  color: transparent;
+  text-shadow: 0 0 0 #90d690;
+
+  /* Hack to hide the real caret */
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: VT323, monospace, "Lucida Console", Monaco;
+  letter-spacing: 1px;
+}
+
+.fallout .prompt .input.show-caret {
+  color: #90d690;
+  opacity: .85;
+}
+
+.fallout .prompt .input::after {
+  font-size: 32px;
+  position: relative;
+  top: 2px;
+}
+
+.fallout .loading::after {
+  content: "âš™";
+  color: #ddd;
+  font-size: 10em;
+  border-radius: 10em;
+  opacity: 0.4;
+}
+
+.fallout .content ul {
+  margin: 0;
+}
+
+.fallout .content ul li {
+  list-style-type: none;
+}

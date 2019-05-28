@@ -15,8 +15,12 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^2.6.0",
+    "@sendgrid/mail": "^6.4.0",
+    "body-parser": "^1.19.0",
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
+    "mailgun-js": "^0.22.0",
+    "mailgun.js": "^2.0.1",
     "nuxt": "^2.4.0",
     "vue-terminal-ui": "^0.1.5",
     "vuetify": "^1.5.5",

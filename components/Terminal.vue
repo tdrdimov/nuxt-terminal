@@ -1,11 +1,17 @@
 <template>
   <div class="container">
+    /* eslint-disable */
+    <form method="post" id="contact_form" action="/">
+      <input v-model="contactForm.name" type="hidden" name="userName" />
+      <input v-model="contactForm.email" type="hidden" name="email" />
+      <textarea v-model="contactForm.message" name="message" style="display:none;"></textarea>
+    </form>
     <div>
       <canvas id="myCanvas" class="background" />
       <div class="terminalFrame">
         <div class="frame">
           <div class="buttons">
-            <div class="close" />
+            <div class="close" @click="onSubmit" />
             <div class="minimize" />
             <div class="zoom" />
           </div>
@@ -19,7 +25,11 @@
 </template>
 
 <script>
+/* eslint-disable */
 import Clock from '~/components/Clock.vue'
+import axios from 'axios'
+
+
 /* eslint-env jquery */
 export default {
   components: {
@@ -27,19 +37,23 @@ export default {
   },
   data() {
     return {
+      termType: null,
+      contactForm: {
+        name: null,
+        email: null,
+        message: null
+      },
       $ptty: null,
       welcome: `Welcome on my <strong class="blue-text">portfolio</strong>
 To start enter the command <strong class="orange-text">help</strong>`,
       error_not_found: `is not a valid command, type <strong class="orange-text">help</strong> for full list with commands.`,
       help: `
 <strong class="orange-text">about</strong>          Learn more about me
-<strong class="orange-text">portfolio</strong>      Show my work
+<strong class="orange-text">portfolio</strong>      Show links to my work
 <strong class="orange-text">skills</strong>         Show my skills
-<strong class="orange-text">social</strong>         Display my social network profiles
+<strong class="orange-text">socials</strong>         Display my social network profiles
 <strong class="orange-text">contact</strong>        Send me a message`,
-      about: `<br /><span class="lightblue-text">I'm Todor Dimov, a 29-year-old <strong class="red-text">Front-end developer</strong> based in Houston, Tx. I'm a weird guy who likes making weird things with web technologies.
-I like to <strong class="red-text">resolve</strong> design problems, <strong class="red-text">create</strong> smart user interface and <strong class="red-text">imagine</strong> useful interaction, developing rich web experiences & <strong class="red-text">web applications</strong>.
-When not working or futzing around with code, I actually study more code. I'm currently not available for full time <strong class="red-text">projects</strong> but always on the look for side ones.</span>`,
+      about: `<br /><span class="lightblue-text">My name is Todor Dimov, a 29-year-old <strong class="red-text">Front-end developer</strong> based in Houston, Tx. I'm a weird guy who likes making weird things with web technologies. I like to <strong class="red-text">resolve</strong> design problems, <strong class="red-text">create</strong> smart user interface and <strong class="red-text">imagine</strong> useful interaction, developing rich web experiences & <strong class="red-text">web applications</strong>.`,
       portfolio: `<br /><a href="#">Delta Hydraulics</a><br /><a href="#">Pelican Insurance</a>`,
       social: `<br />
 <strong class="orange-text">github</strong>        <a target="_blank" href="https://github.com/tdrdimov">github.com</a>
@@ -92,7 +106,7 @@ Adobe Photoshop`
     this.command('help', that.help)
     this.command('about', that.about)
     this.command('portfolio', that.portfolio)
-    this.command('social', that.social)
+    this.command('socials', that.social)
     this.command('skills', that.skills)
     this.command('github', 'open in 1s', 'https://github.com/tdrdimov')
     this.command('linkedin', 'open in 1s', 'https://www.linkedin.com/in/todor-dimov-96900b115')
@@ -103,13 +117,58 @@ Adobe Photoshop`
     this.callback('help')
     this.callback('about')
     this.callback('portfolio')
-    this.callback('social')
+    this.callback('socials')
     this.callback('skills')
     this.callback('github')
     this.callback('linkedin')
     this.callback('instagram')
     this.callback('codepen')
     this.callback('upwork')
+
+    ///////////////////////////////////////////////////////////////////////
+
+    var contact_cmd = {
+      name: 'contact',
+      options: [1,2,3],
+      method: function(cmd) {
+        var opts, $input = pity.get_terminal('.prompt .input')
+        that.termType = $input.text().replace(' ', '_')
+
+        if(cmd[1] && cmd[2] && cmd[3]) {
+          that.contactForm.message = cmd[3]
+          // that.onSubmit()
+        } else if ( cmd[1] && !cmd[2] ) {
+          that.contactForm.name = cmd[1]
+          opts = {
+            out: 'Enter your email?',
+            ps: 'email: ',
+            next: `contact ${cmd[1]} %cmd%`,
+          };
+          cmd = false;
+        } else if ( cmd[1] && cmd[2] && /(.+)@(.+){2,}\.(.+){2,}/.test(cmd[2]) ) {
+          that.contactForm.email = cmd[2]
+          opts = {
+            out: 'Enter your message?',
+            ps: 'message: ',
+            next: `contact ${cmd[1]} ${cmd[2]} %cmd%`,
+          };
+          cmd = false;
+        } else {
+          opts = {
+            out: 'Enter your name?',
+            ps: 'name: ',
+            next: `contact %cmd%`,
+          };
+          cmd = false;
+        }
+        pity.set_command_option(opts);
+
+        return cmd;
+      }
+    };
+    pity.register('command', contact_cmd );
+
+    ///////////////////////////////////////////////////////////////////////
 
     // MATRIX ANIMATION
     canvasApp()
@@ -229,7 +288,12 @@ Adobe Photoshop`
           setTimeout(typewriter, 10)
         }())
       }
+    },
+
+    onSubmit() {
+      document.getElementById("contact_form").submit()
     }
+
   }
 }
 </script>

@@ -1,10 +1,9 @@
 <template>
   <div class="container">
-    /* eslint-disable */
-    <form method="post" id="contact_form" action="/">
-      <input v-model="contactForm.name" type="hidden" name="userName" />
-      <input v-model="contactForm.email" type="hidden" name="email" />
-      <textarea v-model="contactForm.message" name="message" style="display:none;"></textarea>
+    <form id="contact_form" method="post" action="/">
+      <input v-model="contactForm.name" type="hidden" name="userName"></input>
+      <input v-model="contactForm.email" type="hidden" name="email"></input>
+      <textarea id="message" v-model="contactForm.message" name="message" />
     </form>
     <div>
       <canvas id="myCanvas" class="background" />
@@ -25,10 +24,7 @@
 </template>
 
 <script>
-/* eslint-disable */
 import Clock from '~/components/Clock.vue'
-import axios from 'axios'
-
 
 /* eslint-env jquery */
 export default {
@@ -37,54 +33,53 @@ export default {
   },
   data() {
     return {
-      termType: null,
       contactForm: {
         name: null,
         email: null,
         message: null
       },
       $ptty: null,
-      welcome: `Welcome on my <strong class="blue-text">portfolio</strong>
-To start enter the command <strong class="orange-text">help</strong>`,
-      error_not_found: `is not a valid command, type <strong class="orange-text">help</strong> for full list with commands.`,
+      welcome: `Welcome on my <span class="bg-blue">portfolio</span>
+To start enter the command <span class="orange-text">help</span>`,
+      error_not_found: `is not a valid command, type <span class="orange-text">help</span> for full list with commands.`,
       help: `
-<strong class="orange-text">about</strong>          Learn more about me
-<strong class="orange-text">portfolio</strong>      Show links to my work
-<strong class="orange-text">skills</strong>         Show my skills
-<strong class="orange-text">socials</strong>         Display my social network profiles
-<strong class="orange-text">contact</strong>        Send me a message`,
-      about: `<br /><span class="lightblue-text">My name is Todor Dimov, a 29-year-old <strong class="red-text">Front-end developer</strong> based in Houston, Tx. I'm a weird guy who likes making weird things with web technologies. I like to <strong class="red-text">resolve</strong> design problems, <strong class="red-text">create</strong> smart user interface and <strong class="red-text">imagine</strong> useful interaction, developing rich web experiences & <strong class="red-text">web applications</strong>.`,
+<span class="orange-text">about</span>          Learn more about me
+<span class="orange-text">portfolio</span>      Show links to my work
+<span class="orange-text">skills</span>         Show my skills
+<span class="orange-text">socials</span>        Display my social network profiles
+<span class="orange-text">contact</span>        Send me a message`,
+      about: `<br /><span class="lightblue-text">My name is Todor Dimov, a 29-year-old <span class="green-text">Front-end developer</span> based in Houston, Tx. I'm a weird guy who likes making weird things with web technologies. I like to <span class="green-text">resolve</span> design problems, <span class="green-text">create</span> smart user interface and <span class="green-text">imagine</span> useful interaction, developing rich web experiences & <span class="green-text">web applications</span>.`,
       portfolio: `<br /><a href="#">Delta Hydraulics</a><br /><a href="#">Pelican Insurance</a>`,
       social: `<br />
-<strong class="orange-text">github</strong>        <a target="_blank" href="https://github.com/tdrdimov">github.com</a>
-<strong class="orange-text">linkedin</strong>      <a target="_blank" href="https://www.linkedin.com/in/todor-dimov-96900b115">linkedin.com</a>
-<strong class="orange-text">codepen</strong>       <a target="_blank" href="https://codepen.io/tdrdimov/">codepen.io</a>
-<strong class="orange-text">upwork</strong>        <a href="https://www.upwork.com/o/profiles/users/_~012c5b3b4e6acc0bf6/">upwork.com</a>
-<strong class="orange-text">instagram</strong>     <a target="_blank" href="https://www.instagram.com/tdrdimov/">instagram.com</a>
-type <strong class="orange-text">github</strong> to open my github profile`,
+<span class="orange-text">github</span>        <a target="_blank" href="https://github.com/tdrdimov">github.com</a>
+<span class="orange-text">linkedin</span>      <a target="_blank" href="https://www.linkedin.com/in/todor-dimov-96900b115">linkedin.com</a>
+<span class="orange-text">codepen</span>       <a target="_blank" href="https://codepen.io/tdrdimov/">codepen.io</a>
+<span class="orange-text">upwork</span>        <a href="https://www.upwork.com/o/profiles/users/_~012c5b3b4e6acc0bf6/">upwork.com</a>
+<span class="orange-text">instagram</span>     <a target="_blank" href="https://www.instagram.com/tdrdimov/">instagram.com</a>
+type <span class="orange-text">github</span> to open my github profile`,
       skills: `<br />
 <h3 class="cyan-text">SKILLS</h3>
-<strong class="lightblue-text">Development:</strong>
+<span class="lightblue-text">Development:</span>
 Front-end frameworks
 Browser-specific quirks
 Performance across devices
 Responsive web
 Client-side optimization
 
-<strong class="lightblue-text">Design:</strong>
+<span class="lightblue-text">Design:</span>
 User interface
 User experience
 Web animation
 
 <h3 class="cyan-text">TOOLS</h3>
-<strong class="lightblue-text">Development:</strong>
+<span class="lightblue-text">Development:</span>
 Javascript <span class="small">es6 / jQuery / React.js / Vue.js / Three.js / Nuxt.js</span>
 PHP <span class="small">Wordpress</span>
 HTML
 CSS <span class="small">SASS / SCSS</span>
 Version Control <span class="small">git</span>
 
-<strong class="lightblue-text">Design:</strong>
+<span class="lightblue-text">Design:</span>
 Adobe Photoshop`
     }
   },
@@ -108,12 +103,13 @@ Adobe Photoshop`
     this.command('portfolio', that.portfolio)
     this.command('socials', that.social)
     this.command('skills', that.skills)
-    this.command('github', 'open in 1s', 'https://github.com/tdrdimov')
-    this.command('linkedin', 'open in 1s', 'https://www.linkedin.com/in/todor-dimov-96900b115')
-    this.command('instagram', 'open in 1s', 'https://www.instagram.com/tdrdimov/')
-    this.command('codepen', 'open in 1s', 'https://codepen.io/tdrdimov/')
-    this.command('upwork', 'open in 1s', 'https://www.upwork.com/o/profiles/users/_~012c5b3b4e6acc0bf6/')
-    // Register callback for commands
+    this.contact() // contact command
+    this.command('github', '<span class="loading-dots"><span>Opens in 1s</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://github.com/tdrdimov')
+    this.command('linkedin', '<span class="loading-dots"><span>Opens in 1s</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.linkedin.com/in/todor-dimov-96900b115')
+    this.command('instagram', '<span class="loading-dots"><span>Opens in 1s</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.instagram.com/tdrdimov/')
+    this.command('codepen', '<span class="loading-dots"><span>Opens in 1s</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://codepen.io/tdrdimov/')
+    this.command('upwork', '<span class="loading-dots"><span>Opens in 1s</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.upwork.com/o/profiles/users/_~012c5b3b4e6acc0bf6/')
+    // Register typing callback for commands
     this.callback('help')
     this.callback('about')
     this.callback('portfolio')
@@ -125,54 +121,8 @@ Adobe Photoshop`
     this.callback('codepen')
     this.callback('upwork')
 
-    ///////////////////////////////////////////////////////////////////////
-
-    var contact_cmd = {
-      name: 'contact',
-      options: [1,2,3],
-      method: function(cmd) {
-        var opts, $input = pity.get_terminal('.prompt .input')
-        that.termType = $input.text().replace(' ', '_')
-
-        if(cmd[1] && cmd[2] && cmd[3]) {
-          that.contactForm.message = cmd[3]
-          // that.onSubmit()
-        } else if ( cmd[1] && !cmd[2] ) {
-          that.contactForm.name = cmd[1]
-          opts = {
-            out: 'Enter your email?',
-            ps: 'email: ',
-            next: `contact ${cmd[1]} %cmd%`,
-          };
-          cmd = false;
-        } else if ( cmd[1] && cmd[2] && /(.+)@(.+){2,}\.(.+){2,}/.test(cmd[2]) ) {
-          that.contactForm.email = cmd[2]
-          opts = {
-            out: 'Enter your message?',
-            ps: 'message: ',
-            next: `contact ${cmd[1]} ${cmd[2]} %cmd%`,
-          };
-          cmd = false;
-        } else {
-          opts = {
-            out: 'Enter your name?',
-            ps: 'name: ',
-            next: `contact %cmd%`,
-          };
-          cmd = false;
-        }
-        pity.set_command_option(opts);
-
-        return cmd;
-      }
-    };
-    pity.register('command', contact_cmd );
-
-    ///////////////////////////////////////////////////////////////////////
-
     // MATRIX ANIMATION
     canvasApp()
-
     function canvasSupport(e) {
       return !!e.getContext
     }
@@ -212,7 +162,54 @@ Adobe Photoshop`
     }
   },
   methods: {
-    // Register command
+    // Register contact command
+    contact() {
+      const pity = this.$ptty
+      const that = this
+      pity.register('command', {
+        name: 'contact',
+        method: function (cmd) {
+          const $input = pity.get_terminal('.prompt .input')
+          const testMail = /(.+)@(.+){2,}\.(.+){2,}/
+          if (that.contactForm.name === null) {
+            cmd.out = 'Enter your name.'
+            cmd.ps = 'Name: '
+          }
+          cmd.next = 'contact 0'
+          if (cmd[1]) {
+            const num = parseInt(cmd[1], 10)
+            cmd.next = 'contact ' + (num + 1)
+            if (num === 0) {
+              cmd.out = 'Enter your email.'
+              cmd.ps = 'Email: '
+              that.contactForm.name = $input.text()
+            } else if (num === 1) {
+              if (testMail.test($input.text())) {
+                cmd.out = 'Enter your message.'
+                cmd.ps = 'Message: '
+                that.contactForm.email = $input.text()
+              } else {
+                alert('Please input a valid email!')
+                cmd.out = 'Enter your email.'
+                cmd.ps = 'Email: '
+                cmd.next = 'contact 1'
+              }
+            } else if (num === 2 && testMail.test(that.contactForm.email)) {
+              that.contactForm.message = $input.text()
+              cmd.out = `<span class="loading-dots"><span>Sending</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>`
+              setTimeout(() => {
+                that.onSubmit()
+                cmd.out = cmd.ps = cmd.next = null
+              }, 3000)
+            }
+          }
+          pity.set_command_option(cmd)
+          return false
+        },
+        options: [1]
+      })
+    },
+    // Register command generator
     command(name, type, link) {
       const pity = this.$ptty
       pity.register('command', {
@@ -289,9 +286,9 @@ Adobe Photoshop`
         }())
       }
     },
-
+    // Submit contact hidden form
     onSubmit() {
-      document.getElementById("contact_form").submit()
+      document.getElementById('contact_form').submit()
     }
 
   }

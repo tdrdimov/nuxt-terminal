@@ -15,7 +15,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     script: [
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' },
+      { src: 'js/jquery.slim.min.js', type: "text/javascript" },
       { src: "js/ptty.jquery.js", type: "text/javascript" }
     ],
     link: [

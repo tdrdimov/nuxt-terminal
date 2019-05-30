@@ -46,10 +46,10 @@ app.post('/', (req, res) => {
   var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
   var data = {
-    from: `From ${req.body.userName} ${req.body.email}`,
+    from: `From ${req.body.userName} <${req.body.email}>`,
     to: 'tdrdimov@gmail.com',
-    subject: 'Msg From Terminal',
-    html: `Message: ${req.body.message}`
+    subject: `Msg From Terminal`,
+    text: `Message: ${req.body.message}`
   };
 
   mailgun.messages().send(data, function (error, body) {

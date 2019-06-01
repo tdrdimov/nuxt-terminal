@@ -52,8 +52,8 @@ app.post('/', (req, res) => {
     text: `Message: ${req.body.message}`
   };
 
-  mailgun.messages().send(data, function (error, body) {
-    console.log(body);
+  mailgun.messages().send(data, function (error, body, event) {
+    console.log(error, body, event);
   });
   res.redirect('/')
 })

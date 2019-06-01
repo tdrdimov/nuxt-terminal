@@ -20,8 +20,8 @@
       </div>
       <Clock id="clock" />
     </div>
-    <v-snackbar v-model="snackbar" right="true" :timeout="timeout" top="true">
-      <span class="red-text">{{ snackText }}</span>
+    <v-snackbar v-model="snackbar" right :timeout="timeout" top>
+      <span :class="snackColor">{{ snackText }}</span>
       <v-btn flat @click="snackbar = false">
         Close
       </v-btn>
@@ -42,6 +42,7 @@ export default {
       snackbar: false,
       timeout: 6000,
       snackText: null,
+      snackColor: null,
       contactForm: {
         name: null,
         email: null,
@@ -50,17 +51,19 @@ export default {
       $ptty: null,
       welcome: `Welcome on my <span class="bg-blue">portfolio</span>
 Type <span class="orange-text">help</span> to see list with commands`,
-      error_not_found: `<span class="red-text">is not a valid command!</span><br />Type <span class="orange-text">help</span> to see list with commands.`,
+      error_not_found: `<span class="red-text">is not a valid command!</span>
+Type <span class="orange-text">help</span> to see list with commands.`,
       help: `
 <span class="orange-text">about</span>          learn more about me
 <span class="orange-text">portfolio</span>      display links to my work
 <span class="orange-text">skills</span>         learn more about my skills
 <span class="orange-text">socials</span>        display links to my social network profiles
 <span class="orange-text">contact</span>        send me a message`,
-      about: `<br /><span class="lightblue-text">My name is Todor Dimov, a 29-year-old <span class="green-text">Front-end developer</span> based in Houston, Tx. I'm a weird guy who likes making weird things with web technologies. I like to <span class="green-text">resolve</span> design problems, <span class="green-text">create</span> smart user interface and <span class="green-text">imagine</span> useful interaction, developing rich web experiences & <span class="green-text">web applications</span>.`,
+      about: `
+<span class="lightblue-text">My name is Todor Dimov, a 29-year-old <span class="green-text">Front-end developer</span> based in Houston, Tx. I'm a weird guy who likes making weird things with web technologies. I like to <span class="green-text">resolve</span> design problems, <span class="green-text">create</span> smart user interface and <span class="green-text">imagine</span> useful interaction, developing rich web experiences & <span class="green-text">web applications</span>.`,
       portfolio: `
 <span class="green-text">Note: these are not my designs, just the code.</span>
-<span>Type <span class="orange-text">project_1</span> to see info about this project.<br />Click on the name to visit the site.</span><br />
+<span>Type <span class="orange-text">project_1</span> to see info about this project.<br />Type <span class="orange-text">open_1</span> or click on the name to visit the site.</span><br />
 <span class="orange-text">project_1</span>   <a href="https://www.pelican-insurance.com" target="_blank">Pelican Insurance</a>
 <span class="orange-text">project_2</span>   <a href="https://www.clearlake-specialties.com/" target="_blank">ClearLake Specialties</a>
 <span class="orange-text">project_3</span>   <a href="https://www.wagonway.com/" target="_blank">Wagonway</a>
@@ -68,14 +71,14 @@ Type <span class="orange-text">help</span> to see list with commands`,
 <span class="orange-text">project_5</span>   <a href="https://www.coden.com/" target="_blank">Coden</a>
 <span class="orange-text">project_6</span>   <a href="http://www.tasrealtygroup.com/" target="_blank">Tas Realty Group</a>
 <span class="orange-text">project_7</span>   <a href="https://www.ieap.com/" target="_blank">IEAP</a>`,
-      social: `<br />
+      social: `
+Type <span class="orange-text">github</span> to open my github profile<br />
 <span class="orange-text">github</span>        <a target="_blank" href="https://github.com/tdrdimov">github.com</a>
 <span class="orange-text">linkedin</span>      <a target="_blank" href="https://www.linkedin.com/in/todor-dimov-96900b115">linkedin.com</a>
 <span class="orange-text">codepen</span>       <a target="_blank" href="https://codepen.io/tdrdimov/">codepen.io</a>
 <span class="orange-text">upwork</span>        <a href="https://www.upwork.com/o/profiles/users/_~012c5b3b4e6acc0bf6/">upwork.com</a>
-<span class="orange-text">instagram</span>     <a target="_blank" href="https://www.instagram.com/tdrdimov/">instagram.com</a>
-type <span class="orange-text">github</span> to open my github profile`,
-      skills: `<br />
+<span class="orange-text">instagram</span>     <a target="_blank" href="https://www.instagram.com/tdrdimov/">instagram.com</a>`,
+      skills: `
 <h3 class="cyan-text">SKILLS</h3>
 <span class="lightblue-text">Development:</span>
 Front-end frameworks
@@ -114,6 +117,15 @@ Adobe Photoshop`
       native_cmds: false
     })
     this.$ptty = pity
+
+    // Contact success message
+    const successMsg = localStorage.getItem('messageSent')
+    if (successMsg) {
+      that.snackbar = true
+      that.snackText = successMsg
+      that.snackColor = 'green-text'
+      localStorage.removeItem('messageSent')
+    }
 
     // Register commands
     this.command('help', that.help)
@@ -240,6 +252,7 @@ Adobe Photoshop`
               } else {
                 that.snackbar = true
                 that.snackText = 'PLEASE INPUT VALID EMAIL!'
+                that.snackColor = 'red-text'
                 cmd.out = 'Enter your email.'
                 cmd.ps = 'Email: '
                 cmd.next = 'contact 1'
@@ -250,6 +263,7 @@ Adobe Photoshop`
               setTimeout(() => {
                 that.onSubmit()
                 cmd.out = cmd.ps = cmd.next = null
+                localStorage.setItem('messageSent', 'Thank you for getting in touch! I will get back to you shortly!')
               }, 3000)
             }
           }

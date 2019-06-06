@@ -39,6 +39,11 @@
   font-weight: 100;
 }
 
+//  END GLOBAL
+.application--wrap {
+  overflow: hidden;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -60,10 +65,15 @@
   left: 0;
   right: 0;
   bottom: 0;
-  max-width: 800px;
-  max-height: 500px !important;
-  min-height: 500px;
   margin: auto;
+  min-height: 100vh;
+  max-width: 100%;
+
+  @media (min-width: 800px) {
+    max-width: 800px;
+    max-height: 500px !important;
+    min-height: 500px;
+  }
 
   .frame {
     width: 100%;
@@ -132,6 +142,11 @@
   z-index: 1;
   background: #00000063;
   padding: 20px;
+  display: none;
+
+  @media (min-width: 800px) {
+    display: block;
+  }
 
   p {
     margin: 0;
@@ -187,7 +202,12 @@
 
     /* Hack to hide the real caret */
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
+
+    @media (min-width: 800px) {
+      font-size: 16px;
+    }
+
     line-height: 24px;
     font-family: VT323, monospace, "Lucida Console", Monaco;
     letter-spacing: 1px;

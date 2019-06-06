@@ -27,7 +27,6 @@ module.exports = {
       }
     ]
   },
-
   /*
   ** Customize the progress-bar color
   */

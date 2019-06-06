@@ -31,6 +31,9 @@
 
 <script>
 import Clock from '~/components/Clock.vue'
+// import axios from 'axios'
+const mailgun = require('mailgun.js')
+const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY || 'fc3f1a4d7d46fca62e22f8023d534152-52b0ea77-8de73495' })
 
 /* eslint-env jquery */
 export default {
@@ -72,7 +75,7 @@ Type <span class="orange-text">help</span> to see list with commands.`,
 <span class="orange-text">project_6</span>   <a href="http://www.tasrealtygroup.com/" target="_blank">Tas Realty Group</a>
 <span class="orange-text">project_7</span>   <a href="https://www.ieap.com/" target="_blank">IEAP</a>`,
       social: `
-Type <span class="orange-text">github</span> to open my github profile<br />
+Type <span class="orange-text">github</span> or click on the name to visit my profile.<br />
 <span class="orange-text">github</span>        <a target="_blank" href="https://github.com/tdrdimov">github.com</a>
 <span class="orange-text">linkedin</span>      <a target="_blank" href="https://www.linkedin.com/in/todor-dimov-96900b115">linkedin.com</a>
 <span class="orange-text">codepen</span>       <a target="_blank" href="https://codepen.io/tdrdimov/">codepen.io</a>
@@ -352,6 +355,17 @@ Adobe Photoshop`
     },
     // Submit contact hidden form
     onSubmit() {
+      // 
+      // const that = this
+      // mg.messages.create('sandbox29420065368340e3b89d910c52f16910.mailgun.org', {
+      //   from: `${that.contactForm.name} <${that.contactForm.email}>`,
+      //   to: 'tdrdimov@gmail.com',
+      //   subject: 'Msg From Terminal',
+      //   text: that.contactForm.message,
+      //   html: `<p>${that.contactForm.message}</p>`
+      // })
+      //   .then(msg => console.log('msg: ' + msg)) // logs response data
+      //   .catch(err => console.log('err: ' + err)) // logs any error
       document.getElementById('contact_form').submit()
     }
 

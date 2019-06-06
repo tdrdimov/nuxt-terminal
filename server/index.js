@@ -3,7 +3,6 @@ const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 
 const bodyParser = require('body-parser')
-const sgMail = require('@sendgrid/mail')
 const mailgun = require('mailgun-js')
 
 const app = express()
@@ -40,7 +39,7 @@ async function start() {
 }
 start()
 
-app.post('/', (req, res) => {
+app.post('/', (req, res, next) => {
   var api_key = 'fc3f1a4d7d46fca62e22f8023d534152-52b0ea77-8de73495';
   var domain = 'sandbox29420065368340e3b89d910c52f16910.mailgun.org';
   var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});

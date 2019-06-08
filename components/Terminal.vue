@@ -364,9 +364,8 @@ Adobe Photoshop`
         text: that.contactForm.message,
         html: `<p>${that.contactForm.message}</p>`
       })
-        .then(msg => console.log('msg: ' + msg)) // logs response data
+        .then(msg => console.log('msg: ' + msg), setTimeout(() => { window.location.reload(true) }, 3000)) // logs response data
         .catch(err => console.log('err: ' + err)) // logs any error
-      window.location.reload(true)
       // document.getElementById('contact_form').submit()
     }
 

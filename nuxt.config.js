@@ -19,7 +19,7 @@ module.exports = {
       { src: "js/ptty.jquery.js", type: "text/javascript" }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
       {
         rel: 'stylesheet',
         href:

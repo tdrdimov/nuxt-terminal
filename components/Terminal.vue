@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form id="contact_form" method="post" action="/">
+    <form id="contact_form" method="post" action="mail.php">
       <input v-model="contactForm.name" type="hidden" name="userName"></input>
       <input v-model="contactForm.email" type="hidden" name="email"></input>
       <textarea id="message" v-model="contactForm.message" name="message" />
@@ -31,9 +31,9 @@
 
 <script>
 import Clock from '~/components/Clock.vue'
-// import axios from 'axios'
-const mailgun = require('mailgun.js')
-const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY || 'fc3f1a4d7d46fca62e22f8023d534152-52b0ea77-8de73495' })
+// Need for client side mailgun API
+// const mailgun = require('mailgun.js')
+// const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY || 'fc3f1a4d7d46fca62e22f8023d534152-52b0ea77-8de73495' })
 
 /* eslint-env jquery */
 export default {
@@ -355,7 +355,7 @@ Adobe Photoshop`
     },
     // Submit contact hidden form
     onSubmit() {
-      // 
+      // Client side mailgun api works but blocked by CORS
       // const that = this
       // mg.messages.create('sandbox29420065368340e3b89d910c52f16910.mailgun.org', {
       //   from: `${that.contactForm.name} <${that.contactForm.email}>`,

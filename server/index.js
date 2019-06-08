@@ -1,13 +1,26 @@
+var cors = require('cors')
 const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
+
 
 const bodyParser = require('body-parser')
 const mailgun = require('mailgun-js')
 
 const app = express()
 
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json())
+
+app.use((req, res,next) => {
+ res.header('Access-Control-Allow-Origin', '*')
+ res.header('Access-Control-Allow-Headers', '*')
+ if (req.method === 'OPTIONS') {
+  res.header('Access-Control-Allow-Method', 'PUT, POST, PATCH, DELETE, GET')
+  return res.status(200).json({})
+ }
+ next()
+})
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
@@ -33,7 +46,7 @@ async function start() {
   // Listen the server
   app.listen(port, host)
   consola.ready({
-    message: `Server listening on http://${host}:${port}`,
+    message: `Server listening on http://${host}:${3001}`,
     badge: true
   })
 }

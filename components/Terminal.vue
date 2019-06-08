@@ -366,7 +366,7 @@ Adobe Photoshop`
       })
         .then(msg => console.log('msg: ' + msg)) // logs response data
         .catch(err => console.log('err: ' + err)) // logs any error
-      document.getElementById('contact_form').submit()
+      // document.getElementById('contact_form').submit()
     }
 
   }

@@ -1,7 +1,7 @@
 const express = require('express')
+var cors = require('cors')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
-
 
 const bodyParser = require('body-parser')
 
@@ -9,13 +9,21 @@ const api_key = 'fc3f1a4d7d46fca62e22f8023d534152-52b0ea77-8de73495';
 const domain = 'sandbox29420065368340e3b89d910c52f16910.mailgun.org';
 const mailgun = require('mailgun-js')({apiKey: api_key, domain: domain})
 
+const urlencodedParser = bodyParser.urlencoded( { extended:false } )
+
 const app = express()
 
-app.use(bodyParser.urlencoded( {extended:true} ))
+app.use(cors())
+
+app.use(urlencodedParser)
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
+
+app.get('/contact', (req, res) => {
+  console.log(req);
+})
 
 async function start() {
   // Init Nuxt.js
@@ -34,16 +42,16 @@ async function start() {
   // Give nuxt middleware to express
   app.use(nuxt.render)
 
-  // Listen the server
   app.listen(port, host)
   consola.ready({
     message: `Server listening on http://${host}:${port}`,
     badge: true
   })
 }
+
 start()
 
-app.post('/', (req, res, next) => {
+app.post('/contact', urlencodedParser, (req, res) => {
 
   var data = {
     from: `From ${req.body.userName} <${req.body.email}>`,
@@ -53,7 +61,7 @@ app.post('/', (req, res, next) => {
   };
 
   mailgun.messages().send(data, function (error, body) {
-    console.log(body)
+    console.log('body:' + body, 'error: ' + error)
     if(!error)
     res.send('Mail Sent')
     else

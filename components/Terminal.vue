@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form id="contact_form" method="post" action="/">
+    <form id="contact_form" method="post" action="/contact">
       <input v-model="contactForm.name" type="hidden" name="userName"></input>
       <input v-model="contactForm.email" type="hidden" name="email"></input>
       <textarea id="message" v-model="contactForm.message" name="message" />
@@ -356,17 +356,17 @@ Adobe Photoshop`
     // Submit contact hidden form
     onSubmit() {
       // Client side mailgun api works but blocked by CORS
-      // const that = this
-      //
-      // mg.messages.create('sandbox29420065368340e3b89d910c52f16910.mailgun.org', {
-      //   from: `${that.contactForm.name} <${that.contactForm.email}>`,
-      //   to: 'tdrdimov@gmail.com',
-      //   subject: 'Msg From Terminal',
-      //   text: that.contactForm.message,
-      //   html: `<p>${that.contactForm.message}</p>`
-      // })
-      //   .then(msg => console.log('msg: ' + msg)) // logs response data
-      //   .catch(err => console.log('err: ' + err)) // logs any error
+      const that = this
+
+      mg.messages.create('sandbox29420065368340e3b89d910c52f16910.mailgun.org', {
+        from: `${that.contactForm.name} <${that.contactForm.email}>`,
+        to: 'tdrdimov@gmail.com',
+        subject: 'Msg From Terminal',
+        text: that.contactForm.message,
+        html: `<p>${that.contactForm.message}</p>`
+      })
+        .then(msg => console.log('msg: ' + msg)) // logs response data
+        .catch(err => console.log('err: ' + err)) // logs any error
 
       document.getElementById('contact_form').submit()
     }

@@ -67,5 +67,5 @@ app.post('/', urlencodedParser, (req, res) => {
     else
     res.send('Mail Not Sent!')
   })
-  res.redirect('/')
+  // res.redirect('/')
 })

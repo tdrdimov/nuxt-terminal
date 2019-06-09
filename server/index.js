@@ -21,7 +21,7 @@ app.use(urlencodedParser)
 const config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
 
-app.get('/contact', (req, res) => {
+app.get('/', (req, res) => {
   console.log(req);
 })
 
@@ -51,7 +51,7 @@ async function start() {
 
 start()
 
-app.post('/contact', urlencodedParser, (req, res) => {
+app.post('/', urlencodedParser, (req, res) => {
 
   var data = {
     from: `From ${req.body.userName} <${req.body.email}>`,

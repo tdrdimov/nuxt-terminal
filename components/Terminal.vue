@@ -354,9 +354,10 @@ Adobe Photoshop`
       }
     },
     // Submit contact hidden form
-    onSubmit() {
+    onSubmit(event) {
       // Client side mailgun api works but blocked by CORS
       const that = this
+      event.preventDefault()
 
       mg.messages.create('sandbox29420065368340e3b89d910c52f16910.mailgun.org', {
         from: `${that.contactForm.name} <${that.contactForm.email}>`,

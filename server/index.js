@@ -12,11 +12,8 @@ const mailgun = require('mailgun-js')({apiKey: api_key, domain: domain})
 const urlencodedParser = bodyParser.urlencoded( { extended:false } )
 
 const app = express()
-
 app.use(cors())
-
 app.use(urlencodedParser)
-
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
@@ -47,7 +44,7 @@ async function start() {
 
 start()
 
-app.post('/', cors(), (req, res) => {
+app.post('/', cors(), (req, res, ) => {
 
   var data = {
     from: `From ${req.body.userName} <${req.body.email}>`,
@@ -59,9 +56,9 @@ app.post('/', cors(), (req, res) => {
   mailgun.messages().send(data, function (error, body) {
     console.log('body:' + body, 'error: ' + error)
     if(!error)
-    console.log('Mail Sent');
+    console.log('Mail Sent')
     else
     console.log('Mail Not Sent!');
   })
-  // res.redirect('/')
+  res.redirect('/')
 })

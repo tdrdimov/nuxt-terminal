@@ -21,10 +21,6 @@ app.use(urlencodedParser)
 const config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
 
-app.get('/', (req, res) => {
-  console.log(req);
-})
-
 async function start() {
   // Init Nuxt.js
   const nuxt = new Nuxt(config)
@@ -51,7 +47,7 @@ async function start() {
 
 start()
 
-app.post('/', urlencodedParser, (req, res) => {
+app.post('/', cors(), (req, res) => {
 
   var data = {
     from: `From ${req.body.userName} <${req.body.email}>`,
@@ -63,9 +59,9 @@ app.post('/', urlencodedParser, (req, res) => {
   mailgun.messages().send(data, function (error, body) {
     console.log('body:' + body, 'error: ' + error)
     if(!error)
-    res.send('Mail Sent')
+    console.log('Mail Sent');
     else
-    res.send('Mail Not Sent!')
+    console.log('Mail Not Sent!');
   })
   // res.redirect('/')
 })

@@ -1,26 +1,17 @@
-var cors = require('cors')
 const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 
 
 const bodyParser = require('body-parser')
-const mailgun = require('mailgun-js')
+
+const api_key = 'fc3f1a4d7d46fca62e22f8023d534152-52b0ea77-8de73495';
+const domain = 'sandbox29420065368340e3b89d910c52f16910.mailgun.org';
+const mailgun = require('mailgun-js')({apiKey: api_key, domain: domain})
 
 const app = express()
 
-app.use(bodyParser.urlencoded({extended:true}))
-app.use(bodyParser.json())
-
-app.use((req, res,next) => {
- res.header('Access-Control-Allow-Origin', '*')
- res.header('Access-Control-Allow-Headers', '*')
- if (req.method === 'OPTIONS') {
-  res.header('Access-Control-Allow-Method', 'PUT, POST, PATCH, DELETE, GET')
-  return res.status(200).json({})
- }
- next()
-})
+app.use(bodyParser.urlencoded( {extended:true} ))
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
@@ -46,16 +37,13 @@ async function start() {
   // Listen the server
   app.listen(port, host)
   consola.ready({
-    message: `Server listening on http://${host}:${3001}`,
+    message: `Server listening on http://${host}:${port}`,
     badge: true
   })
 }
 start()
 
 app.post('/', (req, res, next) => {
-  var api_key = 'fc3f1a4d7d46fca62e22f8023d534152-52b0ea77-8de73495';
-  var domain = 'sandbox29420065368340e3b89d910c52f16910.mailgun.org';
-  var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
   var data = {
     from: `From ${req.body.userName} <${req.body.email}>`,
@@ -64,8 +52,12 @@ app.post('/', (req, res, next) => {
     text: `Message: ${req.body.message}`
   };
 
-  mailgun.messages().send(data, function (error, body, event) {
-    console.log(error, body, event);
-  });
+  mailgun.messages().send(data, function (error, body) {
+    console.log(body)
+    if(!error)
+    res.send('Mail Sent')
+    else
+    res.send('Mail Not Sent!')
+  })
   res.redirect('/')
 })

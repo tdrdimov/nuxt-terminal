@@ -30,7 +30,8 @@
     "nuxt": "^2.4.0",
     "vue-terminal-ui": "^0.1.5",
     "vuetify": "^1.5.5",
-    "vuetify-loader": "^1.2.1"
+    "vuetify-loader": "^1.2.1",
+    "webpack": "4.28.4"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",

@@ -38,14 +38,6 @@ async function start() {
   // Give nuxt middleware to express
   app.use(nuxt.render)
 
-  if (process.env.NODE_ENV === 'production') {
-  	 app.use('/', express.static(path.join(__dirname, 'public')))
-  }
-
-  app.get('/', (req, res) => {
-  	res.sendFile(path.join(__dirname, 'public', 'index.html'));
-  });
-
   app.listen(port, host)
   consola.ready({
     message: `Server listening on http://${host}:${port}`,
@@ -69,8 +61,8 @@ app.post('/', (req, res, ) => {
      port: 587,
      secure: false, // true for 465, false for other ports
      auth: {
-       user: 'postmaster@sandbox29420065368340e3b89d910c52f16910.mailgun.org', // generated ethereal user
-       pass: '87c24fd580d56265389044d109052d75-52b0ea77-b351d3d8' // generated ethereal password
+       user: 'postmaster@sandbox29420065368340e3b89d910c52f16910.mailgun.org',
+       pass: '87c24fd580d56265389044d109052d75-52b0ea77-b351d3d8'
      }
    });
 
@@ -89,22 +81,6 @@ app.post('/', (req, res, ) => {
    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
  }
-
-//
-//   var data = {
-//     from: `From ${req.body.userName} <${req.body.email}>`,
-//     to: 'tdrdimov@gmail.com',
-//     subject: `Msg From Terminal`,
-//     text: `Message: ${req.body.message}`
-//   };
-//
-//   mailgun.messages().send(data, function (error, body) {
-//     console.log('body:' + body, 'error: ' + error)
-//     if(!error)
-//     console.log('Mail Sent')
-//     else
-//     console.log('Mail Not Sent!');
-//   })
 
 main().catch(console.error);
 res.redirect('/')

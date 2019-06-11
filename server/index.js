@@ -3,6 +3,7 @@ const cors = require('cors')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
+const path = require("path")
 
 const nodemailer = require("nodemailer");
 
@@ -36,6 +37,14 @@ async function start() {
 
   // Give nuxt middleware to express
   app.use(nuxt.render)
+
+  if (process.env.NODE_ENV === 'production') {
+  	 app.use('/', express.static(path.join(__dirname, 'public')))
+  }
+
+  app.get('/', (req, res) => {
+  	res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
 
   app.listen(port, host)
   consola.ready({

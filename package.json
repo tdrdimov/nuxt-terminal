@@ -1,6 +1,10 @@
 {
   "name": "tdr-terminal",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.16.0",
+    "npm": "6.4.1"
+  },
   "description": "My Terminal Portfolio App",
   "author": "Todor Dimov",
   "private": true,
@@ -46,9 +50,5 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "webpack": "4.28.4"
-  },
-  "engines": {
-    "node": "8.16.0",
-    "npm": "6.4.1"
   }
 }

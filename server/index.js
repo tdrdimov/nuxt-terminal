@@ -49,7 +49,7 @@ async function start() {
 
 start()
 
-app.post('/', (req, res, ) => {
+app.post('/', (req, res, next) => {
 
  async function main() {
 
@@ -63,8 +63,8 @@ app.post('/', (req, res, ) => {
      port: 587,
      secure: false, // true for 465, false for other ports
      auth: {
-       user: 'postmaster@sandbox29420065368340e3b89d910c52f16910.mailgun.org',
-       pass: '87c24fd580d56265389044d109052d75-52b0ea77-b351d3d8'
+       user: 'postmaster@sandbox91f0f544e7eb4e989df4f2fa82cc21f6.mailgun.org',
+       pass: '2d5f3d958799017d64b0119c481dd6c0-16ffd509-3bb9fe77'
      }
    });
 
@@ -81,7 +81,7 @@ app.post('/', (req, res, ) => {
 
    // Preview only available when sending through an Ethereal account
    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...\
  }
 
 main().catch(console.error);

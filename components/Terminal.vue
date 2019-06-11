@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <form id="contact_form" method="post" action="/">
-      <input v-model="contactForm.name" type="hidden" name="userName"></input>
-      <input v-model="contactForm.email" type="hidden" name="email"></input>
+      <input id="name" v-model="contactForm.name" type="hidden" name="userName"></input>
+      <input id="from" v-model="contactForm.email" type="hidden" name="email"></input>
       <textarea id="message" v-model="contactForm.message" name="message" />
     </form>
     <div>
@@ -31,9 +31,10 @@
 
 <script>
 import Clock from '~/components/Clock.vue'
+// import axios from 'axios'
 // Need for client side mailgun API
-const mailgun = require('mailgun.js')
-const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY || 'fc3f1a4d7d46fca62e22f8023d534152-52b0ea77-8de73495' })
+// const mailgun = require('mailgun.js')
+// const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY || 'fc3f1a4d7d46fca62e22f8023d534152-52b0ea77-8de73495' })
 
 /* eslint-env jquery */
 export default {
@@ -356,17 +357,17 @@ Adobe Photoshop`
     // Submit contact hidden form
     onSubmit(event) {
       // Client side mailgun api works but blocked by CORS
-      const that = this
-
-      mg.messages.create('sandbox29420065368340e3b89d910c52f16910.mailgun.org', {
-        from: `${that.contactForm.name} <${that.contactForm.email}>`,
-        to: 'tdrdimov@gmail.com',
-        subject: 'Msg From Terminal',
-        text: that.contactForm.message,
-        html: `<p>${that.contactForm.message}</p>`
-      })
-        .then(msg => console.log('msg: ' + msg)) // logs response data
-        .catch(err => console.log('err: ' + err)) // logs any error
+      // const that = this
+      //
+      // mg.messages.create('sandbox29420065368340e3b89d910c52f16910.mailgun.org', {
+      //   from: `${that.contactForm.name} <${that.contactForm.email}>`,
+      //   to: 'tdrdimov@gmail.com',
+      //   subject: 'Msg From Terminal',
+      //   text: that.contactForm.message,
+      //   html: `<p>${that.contactForm.message}</p>`
+      // })
+      //   .then(msg => console.log('msg: ' + msg)) // logs response data
+      //   .catch(err => console.log('err: ' + err)) // logs any error
       document.getElementById('contact_form').submit()
     }
 

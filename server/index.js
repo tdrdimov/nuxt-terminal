@@ -17,6 +17,8 @@ const app = express()
 app.use(cors())
 app.use(urlencodedParser)
 
+app.get('/times', (req, res) => res.send(showTimes()))
+
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
@@ -86,3 +88,12 @@ main().catch(console.error);
 res.redirect('/')
 
 })
+
+const showTimes = () => {
+  let result = ''
+  const times = process.env.TIMES || 5
+  for (i = 0; i < times; i++) {
+    result += i + ' '
+  }
+  return result;
+}

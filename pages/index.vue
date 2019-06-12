@@ -1,14 +1,13 @@
 <template>
-  <Form />
+  <Terminal />
 </template>
 
 <script>
-// import Terminal from '~/components/Terminal.vue'
-import Form from '~/components/FormTest.vue'
+import Terminal from '~/components/Terminal.vue'
 
 export default {
   components: {
-    Form
+    Terminal
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form id="contact_form">
+    <form id="contact_form" method="POST" action="/">
       <input id="name" v-model="contactForm.name" type="hidden" name="userName"></input>
       <input id="from" v-model="contactForm.email" type="hidden" name="email"></input>
       <textarea id="message" v-model="contactForm.message" name="message" />
@@ -369,12 +369,7 @@ Adobe Photoshop`
       //   .then(msg => console.log('msg: ' + msg)) // logs response data
       //   .catch(err => console.log('err: ' + err)) // logs any error
       /* eslint-disable */
-      document.getElementById('contact_form').submit((e) => {
-       e.preventDefault()
-       axios.post("/submit", this.$data).then(() => {
-        this.$data.contactForm = {};
-      });
-      })
+      document.getElementById('contact_form').submit()
     }
 
   }

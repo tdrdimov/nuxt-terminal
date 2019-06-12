@@ -39,24 +39,6 @@ async function start() {
    res.send("Oops I did a GET, but wanted to POST");
   })
 
-  app.post('/submit', (req, res) => {
-    console.log('got here with ' + JSON.stringify(req.body));
-    var data = {
-         from: `From ${req.body.userName} <todr@bigblablop.com>`,
-         to: 'tdrdimov@gmail.com',
-         subject: `Msg From Terminal`,
-         text: `Message: ${req.body.message}`
-       }
-
-       mailgun.messages().send(data, function (error, body) {
-         console.log('body:' + body, 'error: ' + error)
-         if(!error)
-           console.log('Mail Sent!')
-         else
-           console.log('Mail Not Sent!')
-       })
-  });
-
   // Give nuxt middleware to express
   app.use(nuxt.render)
 
@@ -67,22 +49,22 @@ async function start() {
   })
 }
 
-// app.post('/submit', (req, res, next) => {
-//  var data = {
-//      from: `From ${req.body.userName} <${req.body.email}>`,
-//      to: 'tdrdimov@gmail.com',
-//      subject: `Msg From Terminal`,
-//      text: `Message: ${req.body.message}`
-//    }
-//
-//    mailgun.messages().send(data, function (error, body) {
-//      console.log('body:' + body, 'error: ' + error)
-//      if(!error)
-//        console.log('Mail Sent!')
-//      else
-//        console.log('Mail Not Sent!')
-//    })
-//
-// })
+app.post('/', (req, res) => {
+ var data = {
+     from: `From ${req.body.userName} <${req.body.email}>`,
+     to: 'tdrdimov@gmail.com',
+     subject: `Msg From Terminal`,
+     text: `Message: ${req.body.message}`
+   }
+
+   mailgun.messages().send(data, function (error, body) {
+     console.log('body:' + body, 'error: ' + error)
+     if(!error)
+       console.log('Mail Sent!')
+     else
+       console.log('Mail Not Sent!')
+   })
+
+})
 
 start()

@@ -42,7 +42,11 @@ async function start() {
   })
 }
 
-app.post('/', (req, res, next) => {
+app.get('/submit', (req, res, next) => {
+  res.send(req.body)
+})
+
+app.post('/submit', (req, res, next) => {
 
  var data = {
      from: `From ${req.body.userName} <${req.body.email}>`,
@@ -54,7 +58,7 @@ app.post('/', (req, res, next) => {
    mailgun.messages().send(data, function (error, body) {
      console.log('body:' + body, 'error: ' + error)
      if(!error)
-     res.send('Mail Sent')
+     res.send('Mail Sent!')
      else
      res.send('Mail Not Sent!')
    })

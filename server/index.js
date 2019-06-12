@@ -60,6 +60,5 @@ app.post('/', (req, res, next) => {
      else
      res.send('Mail Not Sent!')
    })
-   res.redirect('/')
 
 })

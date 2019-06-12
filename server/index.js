@@ -59,12 +59,12 @@ app.post('/', (req, res, next) => {
 
    // create reusable transporter object using the default SMTP transport
    let transporter = nodemailer.createTransport({
-     host: "smtp.mailgun.org",
+     host: "smtp.gmail.com",
      port: 587,
      secure: false, // true for 465, false for other ports
      auth: {
-       user: 'postmaster@sandbox91f0f544e7eb4e989df4f2fa82cc21f6.mailgun.org',
-       pass: '2d5f3d958799017d64b0119c481dd6c0-16ffd509-3bb9fe77'
+       user: 'tdrdimov@gmail.com',
+       pass: 'picolin0'
      }
    });
 

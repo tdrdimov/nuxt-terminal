@@ -20,6 +20,11 @@ app.use(bodyParser.json())
 const config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
 
+if (process.env.NODE_ENV === 'production') {
+    console.log("inside prod");
+    app.use(express.static('client/build'));
+}
+
 async function start() {
   // Init Nuxt.js
   const nuxt = new Nuxt(config)

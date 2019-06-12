@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form id="contact_form" method="post" action="/">
+    <form id="contact_form">
       <input id="name" v-model="contactForm.name" type="hidden" name="userName"></input>
       <input id="from" v-model="contactForm.email" type="hidden" name="email"></input>
       <textarea id="message" v-model="contactForm.message" name="message" />
@@ -355,9 +355,9 @@ Adobe Photoshop`
       }
     },
     // Submit contact hidden form
-    async onSubmit() {
+    onSubmit() {
       // Client side mailgun api works but blocked by CORS
-      const that = this
+      // const that = this
       //
       // mg.messages.create('sandbox29420065368340e3b89d910c52f16910.mailgun.org', {
       //   from: `${that.contactForm.name} <${that.contactForm.email}>`,
@@ -369,34 +369,12 @@ Adobe Photoshop`
       //   .then(msg => console.log('msg: ' + msg)) // logs response data
       //   .catch(err => console.log('err: ' + err)) // logs any error
       /* eslint-disable */
-      try {
-        await  document.getElementById('contact_form').submit((e) => {
-          e.preventDefault()
-
-          console.log(that.contactForm.name);
-
-          axios({
-            method: 'post',
-            url: '/',
-            data: {
-              name: that.contactForm.name,
-              email: that.contactForm.email,
-              msg: that.contactForm.message
-            },
-            config: { headers: {'Content-Type': 'multipart/form-data' }}
-            })
-            .then(function (res) {
-                //handle success
-                console.log(res);
-            })
-            .catch(function (res) {
-                //handle error
-                console.log(res);
-            });
-         })
-      } catch (err) {
-        console.log(err);
-      }
+      document.getElementById('contact_form').submit((e) => {
+       e.preventDefault()
+       axios.post("/submit", this.$data).then(() => {
+        this.$data.contactForm = {};
+      });
+      })
     }
 
   }

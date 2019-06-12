@@ -1,24 +1,19 @@
 const express = require('express')
-const cors = require('cors')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
 const path = require("path")
 
-const nodemailer = require("nodemailer");
+const nodemailer = require("nodemailer")
 
-const api_key = 'fc3f1a4d7d46fca62e22f8023d534152-52b0ea77-8de73495';
-const domain = 'sandbox29420065368340e3b89d910c52f16910.mailgun.org';
+const api_key = '062e8fd4bcfd7fa10b627e9b04a0e846-16ffd509-6e41259a';
+const domain = 'sandbox91f0f544e7eb4e989df4f2fa82cc21f6.mailgun.org';
 const mailgun = require('mailgun-js')({apiKey: api_key, domain: domain})
 
 const urlencodedParser = bodyParser.urlencoded( { extended:false } )
 
 const app = express()
-app.use(cors())
 app.use(urlencodedParser)
-
-app.get('/times', (req, res) => res.send(showTimes()))
-
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
@@ -51,49 +46,20 @@ start()
 
 app.post('/', (req, res, next) => {
 
- async function main() {
-
-   // Generate test SMTP service account from ethereal.email
-   // Only needed if you don't have a real mail account for testing
-   let testAccount = await nodemailer.createTestAccount();
-
-   // create reusable transporter object using the default SMTP transport
-   let transporter = nodemailer.createTransport({
-     host: "smtp.gmail.com",
-     port: 587,
-     secure: false, // true for 465, false for other ports
-     auth: {
-       user: 'tdrdimov@gmail.com',
-       pass: 'picolin0'
-     }
-   });
-
-   // send mail with defined transport object
-   let info = await transporter.sendMail({
+ var data = {
      from: `From ${req.body.userName} <${req.body.email}>`,
      to: 'tdrdimov@gmail.com',
      subject: `Msg From Terminal`,
      text: `Message: ${req.body.message}`
-   });
+   }
 
-   console.log("Message sent: %s", info.messageId);
-   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-   // Preview only available when sending through an Ethereal account
-   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...\
- }
-
-main().catch(console.error);
-res.redirect('/')
+   mailgun.messages().send(data, function (error, body) {
+     console.log('body:' + body, 'error: ' + error)
+     if(!error)
+     res.send('Mail Sent')
+     else
+     res.send('Mail Not Sent!')
+   })
+   res.redirect('/')
 
 })
-
-const showTimes = () => {
-  let result = ''
-  const times = process.env.TIMES || 5
-  for (i = 0; i < times; i++) {
-    result += i + ' '
-  }
-  return result;
-}

@@ -19,6 +19,11 @@ app.use(urlencodedParser)
 const config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
 
+app.get('/createRoute', function(req, res) {
+   // .. your reconizalbe response here ..
+ res.send("Oops I did a GET, but wanted to POST");
+})
+
 async function start() {
   // Init Nuxt.js
   const nuxt = new Nuxt(config)

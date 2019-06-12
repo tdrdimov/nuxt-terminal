@@ -42,8 +42,6 @@ async function start() {
   })
 }
 
-start()
-
 app.post('/', (req, res, next) => {
 
  var data = {
@@ -62,3 +60,5 @@ app.post('/', (req, res, next) => {
    })
 
 })
+
+start()

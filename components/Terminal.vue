@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form id="contact_form" method="post" action="/">
+    <form id="contact_form" method="post">
       <input id="name" v-model="contactForm.name" type="hidden" name="userName"></input>
       <input id="from" v-model="contactForm.email" type="hidden" name="email"></input>
       <textarea id="message" v-model="contactForm.message" name="message" />

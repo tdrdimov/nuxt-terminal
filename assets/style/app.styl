@@ -202,7 +202,7 @@
 
     /* Hack to hide the real caret */
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
 
     @media (min-width: 800px) {
       font-size: 16px;
@@ -214,12 +214,19 @@
   }
 
   .prompt .input.show-caret {
-    color: #ddd;
     opacity: 0.85;
+    caret-color: transparent;
+    color: transparent;
+    text-shadow: 0 0 0 #ddd;
   }
 
   .prompt .input::after {
-    font-size: 32px;
+    font-size: 24px;
+
+    @media (min-width: 800px) {
+      font-size: 32px;
+    }
+
     position: relative;
     top: 2px;
   }

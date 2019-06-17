@@ -16,7 +16,8 @@ module.exports = {
     ],
     script: [
       { src: 'js/jquery.slim.min.js', type: "text/javascript" },
-      { src: "js/ptty.jquery.js", type: "text/javascript" }
+      { src: "js/ptty.jquery.js", type: "text/javascript" },
+      { src: "js/smtp.js", type: "text/javascript" }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },

@@ -1,11 +1,11 @@
 {
-  "name": "tdr-terminal",
+  "name": "terminal(tdrdimov--bash)",
   "version": "1.0.0",
   "engines": {
     "node": "8.16.0",
     "npm": "6.4.1"
   },
-  "description": "My Terminal Portfolio App",
+  "description": "Terminal emulator portfolio, made with Javascript by Todor Dimov.",
   "author": "Todor Dimov",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "heroku-postbuild": "npm run build",
+    "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint"
   },

@@ -1,10 +1,5 @@
 <template>
   <div class="container">
-    <form id="contact_form" method="POST" action="/">
-      <input id="name" v-model="contactForm.name" type="hidden" name="userName"></input>
-      <input id="from" v-model="contactForm.email" type="hidden" name="email"></input>
-      <textarea id="message" v-model="contactForm.message" name="message" />
-    </form>
     <div>
       <canvas id="myCanvas" class="background" />
       <div class="terminalFrame">
@@ -31,10 +26,6 @@
 
 <script>
 import Clock from '~/components/Clock.vue'
-// import axios from 'axios'
-// Need for client side mailgun API
-// const mailgun = require('mailgun.js')
-// const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY || 'fc3f1a4d7d46fca62e22f8023d534152-52b0ea77-8de73495' })
 
 /* eslint-env jquery */
 export default {
@@ -61,13 +52,13 @@ Type <span class="orange-text">help</span> to see list with commands.`,
 <span class="orange-text">about</span>          learn more about me
 <span class="orange-text">portfolio</span>      display links to my work
 <span class="orange-text">skills</span>         learn more about my skills
-<span class="orange-text">socials</span>        display links to my social network profiles
+<span class="orange-text">socials</span>        connect with me
 <span class="orange-text">contact</span>        send me a message`,
       about: `
 <span class="lightblue-text">My name is Todor Dimov, a 29-year-old <span class="green-text">Front-end developer</span> based in Houston, Tx. I'm a weird guy who likes making weird things with web technologies. I like to <span class="green-text">resolve</span> design problems, <span class="green-text">create</span> smart user interface and <span class="green-text">imagine</span> useful interaction, developing rich web experiences & <span class="green-text">web applications</span>.`,
       portfolio: `
 <span class="green-text">Note: these are not my designs, just the code.</span>
-<span>Type <span class="orange-text">project_1</span> to see info about this project.<br />Type <span class="orange-text">open_1</span> or click on the name to visit the site.</span><br />
+<span>Type <span class="orange-text">open_1</span> or click on the name to visit the site.</span><br />Type <span class="orange-text">project_1</span> to see info about this project.<br />
 <span class="orange-text">project_1</span>   <a href="https://www.pelican-insurance.com" target="_blank">Pelican Insurance</a>
 <span class="orange-text">project_2</span>   <a href="https://www.clearlake-specialties.com/" target="_blank">ClearLake Specialties</a>
 <span class="orange-text">project_3</span>   <a href="https://www.wagonway.com/" target="_blank">Wagonway</a>
@@ -121,6 +112,14 @@ Adobe Photoshop`
       native_cmds: false
     })
     this.$ptty = pity
+
+    const atts = {
+      autocapitalize: 'off',
+      autocomplete: 'off',
+      spellcheck: 'false',
+      autocorrect: 'off'
+    }
+    $('.input').attr(atts)
 
     // Contact success message
     const successMsg = localStorage.getItem('messageSent')
@@ -356,20 +355,21 @@ Adobe Photoshop`
     },
     // Submit contact hidden form
     onSubmit() {
-      // Client side mailgun api works but blocked by CORS
-      // const that = this
-      //
-      // mg.messages.create('sandbox29420065368340e3b89d910c52f16910.mailgun.org', {
-      //   from: `${that.contactForm.name} <${that.contactForm.email}>`,
-      //   to: 'tdrdimov@gmail.com',
-      //   subject: 'Msg From Terminal',
-      //   text: that.contactForm.message,
-      //   html: `<p>${that.contactForm.message}</p>`
-      // })
-      //   .then(msg => console.log('msg: ' + msg)) // logs response data
-      //   .catch(err => console.log('err: ' + err)) // logs any error
-      /* eslint-disable */
-      document.getElementById('contact_form').submit()
+      /* eslint-disable-next-line */
+      Email.send({
+        SecureToken: 'C973D7AD-F097-4B95-91F4-40ABC5567812',
+        Host: 'smtp25.elasticemail.com',
+        Username: 'tdrdimov@gmail.com',
+        Password: '17fc0665-b390-4c46-84c5-f2493197aff6',
+        To: 'tdrdimov@gmail.com',
+        From: 'tdrdimov@gmail.com',
+        Subject: 'Msg From Terminal',
+        Body: `This message is sent from ${this.contactForm.email}<br />Message: ${this.contactForm.message}`
+      }).then(
+        message => console.log(message), setTimeout(() => {
+          window.location.reload(true)
+        }, 2000)
+      )
     }
 
   }

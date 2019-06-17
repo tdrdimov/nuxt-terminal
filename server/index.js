@@ -39,11 +39,6 @@ async function start() {
     await nuxt.ready()
   }
 
-  app.get('/createRoute', function(req, res) {
-     // .. your reconizalbe response here ..
-   res.send("Oops I did a GET, but wanted to POST");
-  })
-
   // Give nuxt middleware to express
   app.use(nuxt.render)
 
@@ -54,22 +49,22 @@ async function start() {
   })
 }
 
-app.post('/', (req, res) => {
- var data = {
-     from: `From ${req.body.userName} <${req.body.email}>`,
-     to: 'tdrdimov@gmail.com',
-     subject: `Msg From Terminal`,
-     text: `Message: ${req.body.message}`
-   }
-
-   mailgun.messages().send(data, function (error, body) {
-     console.log('body:' + body, 'error: ' + error)
-     if(!error)
-       console.log('Mail Sent!')
-     else
-       console.log('Mail Not Sent!')
-   })
-
-})
+// app.post('/', (req, res) => {
+//  var data = {
+//      from: `From ${req.body.userName} <${req.body.email}>`,
+//      to: 'tdrdimov@gmail.com',
+//      subject: `Msg From Terminal`,
+//      text: `Message: ${req.body.message}`
+//    }
+//
+//    mailgun.messages().send(data, function (error, body) {
+//      console.log('body:' + body, 'error: ' + error)
+//      if(!error)
+//        console.log('Mail Sent!')
+//      else
+//        console.log('Mail Not Sent!')
+//    })
+//
+// })
 
 start()

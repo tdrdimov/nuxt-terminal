@@ -44,28 +44,29 @@ export default {
         message: null
       },
       $ptty: null,
-      welcome: `Welcome on my <span class="bg-blue">portfolio</span>
+      welcome: `Welcome on my <span class="bg-blue">portfolio application</span>
 Type <span class="orange-text">help</span> to see list with commands`,
       error_not_found: `<span class="red-text">is not a valid command!</span>
 Type <span class="orange-text">help</span> to see list with commands.`,
       help: `
 <span class="orange-text">about</span>          learn more about me
-<span class="orange-text">portfolio</span>      display links to my work
+<span class="orange-text">portfolio</span>      see some of my work
 <span class="orange-text">skills</span>         learn more about my skills
 <span class="orange-text">socials</span>        connect with me
 <span class="orange-text">contact</span>        send me a message`,
       about: `
-<span class="lightblue-text">My name is Todor Dimov, a 29-year-old <span class="green-text">Front-end developer</span> based in Houston, Tx. I'm a weird guy who likes making weird things with web technologies. I like to <span class="green-text">resolve</span> design problems, <span class="green-text">create</span> smart user interface and <span class="green-text">imagine</span> useful interaction, developing rich web experiences & <span class="green-text">web applications</span>.`,
+<span class="lightblue-text">My name is Todor Dimov, I'm 29 year old, working as full time <span class="green-text">Front-end developer</span> currently based in Houston, Tx. I'm a weird guy who likes making weird things with web technologies. I like to <span class="green-text">resolve</span> design problems, <span class="green-text">create</span> smart user interface and <span class="green-text">imagine</span> useful interaction, developing rich web experiences & <span class="green-text">web applications</span>.`,
       portfolio: `
-<span class="green-text">Note: these are not my designs, just the code.</span>
-<span>Type <span class="orange-text">open_1</span> or click on the name to visit the site.</span><br />Type <span class="orange-text">project_1</span> to see info about this project.<br />
-<span class="orange-text">project_1</span>   <a href="https://www.pelican-insurance.com" target="_blank">Pelican Insurance</a>
-<span class="orange-text">project_2</span>   <a href="https://www.clearlake-specialties.com/" target="_blank">ClearLake Specialties</a>
-<span class="orange-text">project_3</span>   <a href="https://www.wagonway.com/" target="_blank">Wagonway</a>
-<span class="orange-text">project_4</span>   <a href="https://www.houstonterminal.com/" target="_blank">Houston Terminal</a>
-<span class="orange-text">project_5</span>   <a href="https://www.coden.com/" target="_blank">Coden</a>
-<span class="orange-text">project_6</span>   <a href="http://www.tasrealtygroup.com/" target="_blank">Tas Realty Group</a>
-<span class="orange-text">project_7</span>   <a href="https://www.ieap.com/" target="_blank">IEAP</a>`,
+<span class="green-text">Note: some of these projects are not my designs, just the code.</span>
+<span>Type <span class="orange-text">open_1</span> or click on the project name to visit the site/app.</span><br />
+<span class="orange-text">1</span>   <a href="https://fitnhealthy.us" target="_blank">Fit & Healthy</a>
+<span class="orange-text">2</span>   <a href="https://www.pelican-insurance.com" target="_blank">Pelican Insurance</a>
+<span class="orange-text">3</span>   <a href="https://www.clearlake-specialties.com/" target="_blank">ClearLake Specialties</a>
+<span class="orange-text">4</span>   <a href="https://www.wagonway.com/" target="_blank">Wagonway</a>
+<span class="orange-text">5</span>   <a href="https://www.houstonterminal.com/" target="_blank">Houston Terminal</a>
+<span class="orange-text">6</span>   <a href="https://www.coden.com/" target="_blank">Coden</a>
+<span class="orange-text">7</span>   <a href="http://www.tasrealtygroup.com/" target="_blank">Tas Realty Group</a>
+<span class="orange-text">8</span>   <a href="https://www.ieap.com/" target="_blank">IEAP</a>`,
       social: `
 Type <span class="orange-text">github</span> or click on the name to visit my profile.<br />
 <span class="orange-text">github</span>        <a target="_blank" href="https://github.com/tdrdimov">github.com</a>
@@ -89,11 +90,12 @@ Web animation
 
 <h3 class="cyan-text">TOOLS</h3>
 <span class="lightblue-text">Development:</span>
-Javascript <span class="small">es6 / jQuery / React.js / Vue.js / Three.js / Nuxt.js</span>
+Javascript <span class="small">ES6 / jQuery / Vue.js / React.js / Three.js / Nuxt.js</span>
 PHP <span class="small">Wordpress</span>
 HTML
 CSS <span class="small">SASS / SCSS</span>
 Version Control <span class="small">git</span>
+Database <span class="small">Firebase - Firestore</span>
 
 <span class="lightblue-text">Design:</span>
 Adobe Photoshop`
@@ -144,28 +146,15 @@ Adobe Photoshop`
     this.command('upwork', '<span class="loading-dots"><span>Opens in 1s</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.upwork.com/o/profiles/users/_~012c5b3b4e6acc0bf6/')
 
     // Projects information commands
-    this.command('project_1', 'Insurance Agency')
-    this.command('project_2', 'Hospital healthcare provider')
-    this.command('project_3', 'Construction products supplier')
-    this.command('project_4', 'Houston\'s largest containerized cargo operator')
-    this.command('project_5', 'People Identity Management')
-    this.command('project_6', 'Real Estate Brokerage Firm')
-    this.command('project_7', 'Personalized treatment for mental and behavioral healthcare')
-    this.command('open_1', '<span class="loading-dots"><span>Opens in 1s</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.pelican-insurance.com/')
-    this.command('open_2', '<span class="loading-dots"><span>Opens in 1s</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.clearlake-specialties.com/')
-    this.command('open_3', '<span class="loading-dots"><span>Opens in 1s</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.wagonway.com/')
-    this.command('open_4', '<span class="loading-dots"><span>Opens in 1s</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.houstonterminal.com/')
-    this.command('open_5', '<span class="loading-dots"><span>Opens in 1s</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.coden.com/')
-    this.command('open_6', '<span class="loading-dots"><span>Opens in 1s</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'http://www.tasrealtygroup.com/')
-    this.command('open_7', '<span class="loading-dots"><span>Opens in 1s</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.ieap.com/')
+    this.command('open_1', '<span class="loading-dots"><span>Loading</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://fitnhealthy.us/')
+    this.command('open_2', '<span class="loading-dots"><span>Loading</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.pelican-insurance.com/')
+    this.command('open_3', '<span class="loading-dots"><span>Loading</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.clearlake-specialties.com/')
+    this.command('open_4', '<span class="loading-dots"><span>Loading</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.wagonway.com/')
+    this.command('open_5', '<span class="loading-dots"><span>Loading</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.houstonterminal.com/')
+    this.command('open_6', '<span class="loading-dots"><span>Loading</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.coden.com/')
+    this.command('open_7', '<span class="loading-dots"><span>Loading</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'http://www.tasrealtygroup.com/')
+    this.command('open_8', '<span class="loading-dots"><span>Loading</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>', 'https://www.ieap.com/')
     // Register typing callback for commands
-    this.callback('project_1')
-    this.callback('project_2')
-    this.callback('project_3')
-    this.callback('project_4')
-    this.callback('project_5')
-    this.callback('project_6')
-    this.callback('project_7')
     this.callback('open_1')
     this.callback('open_2')
     this.callback('open_3')
@@ -173,6 +162,7 @@ Adobe Photoshop`
     this.callback('open_5')
     this.callback('open_6')
     this.callback('open_7')
+    this.callback('open_8')
     // End of project related commands
     this.callback('help')
     this.callback('about')
@@ -289,7 +279,7 @@ Adobe Photoshop`
             toType = type
           }
           if (link !== undefined) {
-            setTimeout(() => { window.open(link) }, 2000)
+            setTimeout(() => { window.open(link) }, 3000)
           }
           cmd.data = { type: toType }
           return cmd

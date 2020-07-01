@@ -44,7 +44,7 @@ export default {
         message: null
       },
       $ptty: null,
-      welcome: `Welcome on my <span class="bg-blue">portfolio application</span>
+      welcome: `Welcome on my <span class="bg-blue">portfolio terminal emulator</span>
 Type <span class="orange-text">help</span> to see list with commands`,
       error_not_found: `<span class="red-text">is not a valid command!</span>
 Type <span class="orange-text">help</span> to see list with commands.`,
@@ -55,7 +55,7 @@ Type <span class="orange-text">help</span> to see list with commands.`,
 <span class="orange-text">socials</span>        connect with me
 <span class="orange-text">contact</span>        send me a message`,
       about: `
-<span class="lightblue-text">My name is Todor Dimov, I'm 29 year old, working as full time <span class="green-text">Front-end developer</span> currently based in Houston, Tx. I'm a weird guy who likes making weird things with web technologies. I like to <span class="green-text">resolve</span> design problems, <span class="green-text">create</span> smart user interface and <span class="green-text">imagine</span> useful interaction, developing rich web experiences & <span class="green-text">web applications</span>.`,
+<span class="lightblue-text">Hi, I'm Todor Dimov, ${(new Date()).getFullYear() - 1990} year old, working as a full time <span class="green-text">Front-end developer,</span> living in Houston, Tx. I can help you solve a problem, build a product or grow existing project. I like to <span class="green-text">resolve</span> design problems, <span class="green-text">create</span> smart user interface and <span class="green-text">useful interaction</span>, developing rich web applications & <span class="green-text">seamless web experiences</span>.`,
       portfolio: `
 <span class="green-text">Note: some of these projects are not my designs, just the code.</span>
 <span>Type <span class="orange-text">open_1</span> or click on the project name to visit the site/app.</span><br />
@@ -71,8 +71,6 @@ Type <span class="orange-text">help</span> to see list with commands.`,
 Type <span class="orange-text">github</span> or click on the name to visit my profile.<br />
 <span class="orange-text">github</span>        <a target="_blank" href="https://github.com/tdrdimov">github.com</a>
 <span class="orange-text">linkedin</span>      <a target="_blank" href="https://www.linkedin.com/in/todor-dimov-96900b115">linkedin.com</a>
-<span class="orange-text">codepen</span>       <a target="_blank" href="https://codepen.io/tdrdimov/">codepen.io</a>
-<span class="orange-text">upwork</span>        <a href="https://www.upwork.com/o/profiles/users/_~012c5b3b4e6acc0bf6/">upwork.com</a>
 <span class="orange-text">instagram</span>     <a target="_blank" href="https://www.instagram.com/tdrdimov/">instagram.com</a>`,
       skills: `
 <h3 class="cyan-text">SKILLS</h3>
@@ -98,7 +96,8 @@ Version Control <span class="small">git</span>
 Database <span class="small">Firebase - Firestore</span>
 
 <span class="lightblue-text">Design:</span>
-Adobe Photoshop`
+Adobe Photoshop
+Figma`
     }
   },
   mounted() {

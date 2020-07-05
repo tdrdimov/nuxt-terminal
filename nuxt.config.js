@@ -11,13 +11,13 @@ module.exports = {
     title: pkg.name,
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, height=device-height, initial-scale=1, user-scalable=no, user-scalable=0' },
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     script: [
-      { src: 'js/jquery.slim.min.js', type: "text/javascript" },
-      { src: "js/ptty.jquery.js", type: "text/javascript" },
-      { src: "js/smtp.js", type: "text/javascript" }
+      { src: 'js/jquery.slim.min.js', type: 'text/javascript' },
+      { src: 'js/ptty.jquery.js', type: 'text/javascript' },
+      { src: 'js/smtp.js', type: 'text/javascript' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
@@ -52,7 +52,7 @@ module.exports = {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
+    '@nuxtjs/axios'
   ],
   /*
   ** Axios module configuration

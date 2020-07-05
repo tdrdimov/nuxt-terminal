@@ -90,7 +90,7 @@ Web animation
 <span class="lightblue-text">Development:</span>
 Javascript <span class="small">ES6 / jQuery / Vue.js / React.js / Three.js / Nuxt.js</span>
 PHP <span class="small">Wordpress</span>
-HTML
+HTML <span class="small">Bootstrap, Material Design</span>
 CSS <span class="small">SASS / SCSS</span>
 Version Control <span class="small">git</span>
 Database <span class="small">Firebase - Firestore</span>

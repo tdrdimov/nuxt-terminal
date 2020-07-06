@@ -2,15 +2,8 @@ const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
-const path = require("path")
 
-const nodemailer = require("nodemailer")
-
-const api_key = '062e8fd4bcfd7fa10b627e9b04a0e846-16ffd509-6e41259a';
-const domain = 'sandbox91f0f544e7eb4e989df4f2fa82cc21f6.mailgun.org';
-const mailgun = require('mailgun-js')({apiKey: api_key, domain: domain})
-
-const urlencodedParser = bodyParser.urlencoded( { extended:false } )
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const app = express()
 app.use(urlencodedParser)
@@ -21,8 +14,8 @@ const config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
 
 if (process.env.NODE_ENV === 'production') {
-    console.log("inside prod");
-    app.use(express.static('client/build'));
+  console.log('inside prod')
+  app.use(express.static('client/build'))
 }
 
 async function start() {
@@ -48,23 +41,5 @@ async function start() {
     badge: true
   })
 }
-
-// app.post('/', (req, res) => {
-//  var data = {
-//      from: `From ${req.body.userName} <${req.body.email}>`,
-//      to: 'tdrdimov@gmail.com',
-//      subject: `Msg From Terminal`,
-//      text: `Message: ${req.body.message}`
-//    }
-//
-//    mailgun.messages().send(data, function (error, body) {
-//      console.log('body:' + body, 'error: ' + error)
-//      if(!error)
-//        console.log('Mail Sent!')
-//      else
-//        console.log('Mail Not Sent!')
-//    })
-//
-// })
 
 start()

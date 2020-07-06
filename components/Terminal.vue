@@ -26,7 +26,7 @@
 
 <script>
 import Clock from '~/components/Clock.vue'
-
+import axios from 'axios'
 /* eslint-env jquery */
 export default {
   components: {
@@ -127,7 +127,7 @@ Figma`
     if (successMsg) {
       that.snackbar = true
       that.snackText = successMsg
-      that.snackColor = 'green-text'
+      that.snackColor = 'white-text'
       localStorage.removeItem('messageSent')
     }
 
@@ -255,7 +255,7 @@ Figma`
               setTimeout(() => {
                 that.onSubmit()
                 cmd.out = cmd.ps = cmd.next = null
-                localStorage.setItem('messageSent', 'Thank you for getting in touch! I will get back to you shortly!')
+                localStorage.setItem('messageSent', 'Thank you for contacting me! I will get back to you shortly!')
               }, 3000)
             }
           }
@@ -344,21 +344,15 @@ Figma`
     },
     // Submit contact hidden form
     onSubmit() {
-      /* eslint-disable-next-line */
-      Email.send({
-        SecureToken: 'C973D7AD-F097-4B95-91F4-40ABC5567812',
-        Host: 'smtp25.elasticemail.com',
-        Username: 'tdrdimov@gmail.com',
-        Password: '17fc0665-b390-4c46-84c5-f2493197aff6',
-        To: 'tdrdimov@gmail.com',
-        From: 'tdrdimov@gmail.com',
-        Subject: 'Msg From Terminal',
-        Body: `This message is sent from ${this.contactForm.email}<br />Message: ${this.contactForm.message}`
-      }).then(
-        message => console.log(message), setTimeout(() => {
+      const email = {
+        message: `Msg from ${this.contactForm.email}<br /><strong>Message</strong>: ${this.contactForm.message}`
+      }
+      axios.post('https://us-central1-terminal-e8d5f.cloudfunctions.net/sendMail', email).then((res) => {
+        console.log(res)
+        setTimeout(() => {
           window.location.reload(true)
         }, 2000)
-      )
+      })
     }
 
   }

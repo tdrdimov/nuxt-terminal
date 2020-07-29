@@ -9,15 +9,15 @@
             <div class="minimize" />
             <div class="zoom" />
           </div>
-          <span>tdrdimov --bash</span>
+          <span>dvlpr --zsh</span>
         </div>
         <div id="terminal" />
       </div>
       <Clock id="clock" />
     </div>
-    <v-snackbar v-model="snackbar" right :timeout="timeout" top>
+    <v-snackbar v-model="snackbar" :timeout="timeout" right top>
       <span :class="snackColor">{{ snackText }}</span>
-      <v-btn flat @click="snackbar = false">
+      <v-btn @click="snackbar = false" flat>
         Close
       </v-btn>
     </v-snackbar>
@@ -25,8 +25,9 @@
 </template>
 
 <script>
-import Clock from '~/components/Clock.vue'
 import axios from 'axios'
+import Clock from '~/components/Clock.vue'
+
 /* eslint-env jquery */
 export default {
   components: {
@@ -44,7 +45,7 @@ export default {
         message: null
       },
       $ptty: null,
-      welcome: `Welcome on my <span class="bg-blue">portfolio terminal emulator</span>
+      welcome: `Welcome on my <span class="bg-blue">portfolio</span>
 Type <span class="orange-text">help</span> to see list with commands`,
       error_not_found: `<span class="red-text">is not a valid command!</span>
 Type <span class="orange-text">help</span> to see list with commands.`,
@@ -251,7 +252,7 @@ Figma`
               }
             } else if (num === 2 && testMail.test(that.contactForm.email)) {
               that.contactForm.message = $input.text()
-              cmd.out = `<span class="loading-dots"><span>Sending</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>`
+              cmd.out = '<span class="loading-dots"><span>Sending</span><span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span></span>'
               setTimeout(() => {
                 that.onSubmit()
                 cmd.out = cmd.ps = cmd.next = null

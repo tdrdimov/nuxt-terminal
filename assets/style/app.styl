@@ -198,11 +198,12 @@
   .prompt .input,
   .prompt .input::before {
     color: transparent;
+    vertical-align: unset!important;
     text-shadow: 0 0 0 #ddd;
 
     /* Hack to hide the real caret */
     font-weight: 400;
-    font-size: 12px;
+    font-size: 14px;
     caret-color: transparent;
 
     @media (min-width: 800px) {
@@ -223,9 +224,10 @@
 
   .prompt .input::after {
     font-size: 24px;
+    vertical-align: unset!important;
 
     @media (min-width: 800px) {
-      font-size: 32px;
+      font-size: 28px;
     }
 
     position: relative;

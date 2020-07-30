@@ -40,11 +40,45 @@
 }
 
 //  END GLOBAL
+.logo {
+  position: relative;
+  z-index: 1;
+  display: none;
+  @media (min-width: 800px) {
+    display: flex;
+  }
+  
+  svg {
+    max-width: 40px;
+    .blinkit {
+      animation: blink-anime 1.6s infinite;
+    }
+  }
+
+  h1 {
+    font-size: 40px;
+    line-height: 1;
+    display: inline;
+    font-weight: 700;
+    // max-width: 150px;
+    letter-spacing: 5px;
+  }
+}
+
+// Blinking animation
+@keyframes blink-anime {
+  0%{     fill: #000000;    }
+  49%{    fill: #000000; }
+  60%{    fill: transparent; }
+  99%{    fill:transparent;  }
+  100%{   fill: #000000;    }
+}
+
 .application--wrap {
   overflow: hidden;
 }
 
-.container {
+.terminal_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,7 +171,7 @@
 #clock {
   text-align: right;
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
   z-index: 1;
   background: #00000063;
@@ -155,7 +189,7 @@
 
 #terminal {
   border-radius: 0 0 5px 5px;
-  webkit-box-shadow: 1px 1px 15px 3px rgba(23, 28, 18, 0.94);
+  -webkit-box-shadow: 1px 1px 15px 3px rgba(23, 28, 18, 0.94);
   -moz-box-shadow: 1px 1px 15px 3px rgba(23, 28, 18, 0.94);
   box-shadow: 1px 1px 15px 3px rgba(23, 28, 18, 0.94);
   -webkit-transition: all 0.5s ease-in-out;

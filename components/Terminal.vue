@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container terminal_container">
     <div>
       <canvas id="myCanvas" class="background" />
       <div class="terminalFrame">
@@ -56,18 +56,22 @@ Type <span class="orange-text">help</span> to see list with commands.`,
 <span class="orange-text">socials</span>        connect with me
 <span class="orange-text">contact</span>        send me a message`,
       about: `
-<span class="lightblue-text">Hi, I'm Todor Dimov, ${(new Date()).getFullYear() - 1990} year old, working as a full time <span class="green-text">Front-end developer,</span> living in Houston, Tx. I can help you solve a problem, build a product or grow existing project. I like to <span class="green-text">resolve</span> design problems, <span class="green-text">create</span> smart user interface and <span class="green-text">useful interaction</span>, developing rich web applications & <span class="green-text">seamless web experiences</span>.`,
+<span class="lightblue-text">Hi, I'm Todor Dimov, ${(new Date()).getFullYear() - 1990} year old, working as a full time <span class="green-text">Front-end developer,</span> living in Houston, Tx. I can help you solve a problem, build a product or grow existing project. I like to <span class="green-text">resolve</span> design problems, <span class="green-text">create</span> smart user interface and <span class="green-text">useful interaction</span>, developing rich web applications & <span class="green-text">seamless web experiences</span>. You can reach out to me by using <span class="orange-text">contact</span> command and we can jump right on it!`,
       portfolio: `
 <span class="green-text">Note: some of these projects are not my designs, just the code.</span>
 <span>Type <span class="orange-text">open_1</span> or click on the project name to visit the site/app.</span><br />
 <span class="orange-text">1</span>   <a href="https://fitnhealthy.us" target="_blank">Fit & Healthy</a>
 <span class="orange-text">2</span>   <a href="https://www.pelican-insurance.com" target="_blank">Pelican Insurance</a>
 <span class="orange-text">3</span>   <a href="https://www.clearlake-specialties.com/" target="_blank">ClearLake Specialties</a>
-<span class="orange-text">4</span>   <a href="https://www.wagonway.com/" target="_blank">Wagonway</a>
+<span class="orange-text">4</span>   <a href="https://shop.wagonway.com/" target="_blank">Wagonway</a>
 <span class="orange-text">5</span>   <a href="https://www.houstonterminal.com/" target="_blank">Houston Terminal</a>
 <span class="orange-text">6</span>   <a href="https://www.coden.com/" target="_blank">Coden</a>
 <span class="orange-text">7</span>   <a href="http://www.tasrealtygroup.com/" target="_blank">Tas Realty Group</a>
-<span class="orange-text">8</span>   <a href="https://www.ieap.com/" target="_blank">IEAP</a>`,
+<span class="orange-text">8</span>   <a href="https://www.ieap.com/" target="_blank">IEAP</a>
+<span class="orange-text">9</span>   <a href="http://vintagelimotexas.com/" target="_blank">Vintage Limo Service</a>
+<span class="orange-text">10</span>  <a href="http://www.sawfishrecovery.org/" target="_blank">Sawfish Recovery</a>
+<span class="orange-text">11</span>  <a href="http://www.hodgesoverheaddoor.com/" target="_blank">Hodges Overhead Doors</a>
+<span class="orange-text">12</span>  <a href="http://warhawkjv.com/" target="_blank">Warhawk</a>`,
       social: `
 Type <span class="orange-text">github</span> or click on the name to visit my profile.<br />
 <span class="orange-text">github</span>        <a target="_blank" href="https://github.com/tdrdimov">github.com</a>
